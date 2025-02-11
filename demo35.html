@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>demo35</title>
+    </head>
+    <body>
+        <div class="property-options">
+            <div class="option-box">
+                <label for="bedrooms">Bedrooms</label>
+                <div class="counter">
+                    <button class="minus" onclick="updateCounter('bedrooms', -1)">-</button>
+                    <input type="text" id="bedrooms" value="1" readonly>
+                    <button class="plus" onclick="updateCounter('bedrooms', 1)">+</button>
+                </div>
+            </div>
+            <div class="option-box">
+                <label for="bathrooms">Bathrooms</label>
+                <div class="counter">
+                    <button class="minus" onclick="updateCounter('bathrooms', -1)">-</button>
+                    <input type="text" id="bathrooms" value="1" readonly>
+                    <button class="plus" onclick="updateCounter('bathrooms', 1)">+</button>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            function updateCounter(id, increment) {
+    const input = document.getElementById(id);
+    let value = parseInt(input.value);
+    value += increment;
+
+    if (value < 0) {
+        value = 0;
+    }
+
+    input.value = value;
+}
+
+        </script>
+        <style>
+            .property-options {
+    display: flex;
+    gap: 20px;
+}
+
+.option-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.counter button {
+    width: 30px;
+    height: 30px;
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+}
+
+.counter input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+.counter button:hover {
+    background-color: #ccc;
+}
+
+        </style>
+    </body>
+</html>

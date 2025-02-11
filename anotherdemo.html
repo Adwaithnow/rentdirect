@@ -1,0 +1,162 @@
+<div class="table-container">
+    <div class="table-left">
+        <label class="table-row">
+            <input type="radio" name="option" onclick="showDetails('createUser')" />
+            <img src="AllImages/assets/images/1518388.png" alt="User Icon" />
+            <span>Create User</span>
+        </label>
+        <label class="table-row">
+            <input type="radio" name="option" onclick="showDetails('createProperty')" />
+            <img src="property-icon.svg" alt="Property Icon" />
+            <span>Create Property</span>
+        </label>
+        <label class="table-row has-branches">
+            <input type="radio" name="option" onclick="toggleBranches('propertiesBranch')" />
+            <img src="properties-icon.svg" alt="Properties Icon" />
+            <span>No of Properties</span>
+        </label>
+        <div id="propertiesBranch" class="branch">
+            <label class="table-row">
+                <input type="radio" name="option" onclick="showDetails('branch1')" />
+                <img src="branch-icon.svg" alt="Branch Icon" />
+                <span>Branch 1</span>
+            </label>
+            <label class="table-row">
+                <input type="radio" name="option" onclick="showDetails('branch2')" />
+                <img src="branch-icon.svg" alt="Branch Icon" />
+                <span>Branch 2</span>
+            </label>
+        </div>
+        <label class="table-row">
+            <input type="radio" name="option" onclick="showDetails('noOfAgents')" />
+            <img src="agents-icon.svg" alt="Agents Icon" />
+            <span>No of Agents</span>
+        </label>
+        <label class="table-row">
+            <input type="radio" name="option" onclick="showDetails('liveVisitors')" />
+            <img src="visitors-icon.svg" alt="Visitors Icon" />
+            <span>Live Visitors</span>
+        </label>
+        <label class="table-row">
+            <input type="radio" name="option" onclick="showDetails('reports')" />
+            <img src="reports-icon.svg" alt="Reports Icon" />
+            <span>Reports</span>
+        </label>
+    </div>
+    <div class="table-right">
+        <div id="detailsContainer">
+            <h2>Details will appear here</h2>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.table-left {
+    width: 30%;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+}
+
+.table-right {
+    width: 70%;
+    padding: 20px;
+}
+
+.table-row {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+
+.table-row input[type="radio"] {
+    display: none;
+}
+
+.table-row img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.table-row span {
+    margin-left: 10px;
+}
+
+.table-row input[type="radio"]:checked + img,
+.table-row input[type="radio"]:checked + span {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.table-row:hover {
+    background-color: #f0f0f0;
+}
+
+.table-row.has-branches {
+    background-color: #f8f8f8;
+}
+
+.branch {
+    display: none;
+    padding-left: 20px;
+}
+
+.branch .table-row {
+    padding-left: 10px;
+    border-bottom: none;
+}
+
+.table-row:hover {
+    background-color: #e0e0e0;
+}
+
+</style>
+<script>
+    function showDetails(detailType) {
+    const detailsContainer = document.getElementById('detailsContainer');
+    
+    let detailsContent = '';
+    switch(detailType) {
+        case 'createUser':
+            detailsContent = '<h2>Create User Details</h2>';
+            break;
+        case 'createProperty':
+            detailsContent = '<h2>Create Property Details</h2>';
+            break;
+        case 'branch1':
+            detailsContent = '<h2>Branch 1: No of Properties</h2><p>Details for Branch 1...</p>';
+            break;
+        case 'branch2':
+            detailsContent = '<h2>Branch 2: No of Properties</h2><p>Details for Branch 2...</p>';
+            break;
+        case 'noOfAgents':
+            detailsContent = '<h2>No of Agents</h2>';
+            break;
+        case 'liveVisitors':
+            detailsContent = '<h2>Live Visitors</h2>';
+            break;
+        case 'reports':
+            detailsContent = '<h2>Reports</h2>';
+            break;
+        default:
+            detailsContent = '<h2>Details will appear here</h2>';
+    }
+    
+    detailsContainer.innerHTML = detailsContent;
+}
+
+function toggleBranches(branchId) {
+    const branch = document.getElementById(branchId);
+    branch.style.display = branch.style.display === 'none' ? 'block' : 'none';
+}
+
+</script>

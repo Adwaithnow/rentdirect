@@ -1,0 +1,46 @@
+<section class="sldr">
+    <div class="slider">
+        <div class="slider-main">
+            <a href="assets/images/1.jpg" data-fancybox="gallery" data-caption="Your Image Description">
+                <img id="main-image" src="assets/images/1.jpg" alt="Main Image">
+            </a>
+            <button class="slider-control prev" onclick="prevImage()">&#10094;</button>
+            <button class="slider-control next" onclick="nextImage()">&#10095;</button>
+        </div>
+        <div class="thumbnail-gallery">
+            <div class="thumbnail-item">
+                <a href="assets/images/1.jpg" data-fancybox="gallery" data-caption="Thumbnail 1">
+                    <img src="assets/images/1.jpg" alt="Thumbnail 1" class="thumbnail">
+                </a>
+            </div>
+            <div class="thumbnail-item">
+                <a href="assets/images/2.jpg" data-fancybox="gallery" data-caption="Thumbnail 2">
+                    <img src="assets/images/2.jpg" alt="Thumbnail 2" class="thumbnail">
+                </a>
+            </div>
+            <!-- Add more thumbnails similarly -->
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function() {
+    $("[data-fancybox]").fancybox({
+        // You can add custom options here if needed
+    });
+});
+
+</script>
+<script>
+    $("[data-fancybox]").fancybox({
+    loop: true, // Loop through images
+    buttons: [
+        "zoom",
+        "slideShow",
+        "thumbs",
+        "close"
+    ],
+    animationEffect: "zoom-in-out", // Custom animation
+    transitionEffect: "slide"
+});
+
+</script>

@@ -1,0 +1,74 @@
+
+
+(function () {
+    var loopaSmartEvents = window._loopaSmartEvents;
+
+    loopaSmartEvents.publisherData = {
+        pubId: '5e3a5c53b997e005bc3ddb1b',
+        siteScript: '\\n<img src="https://secure.adnxs.com/seg?add=20525723&t=2" width="1" height="1" />\\n\\n\\n\\n<img src="https://secure.adnxs.com/px?id=1207740&t=2" width="1" height="1" />\\n\\n\\n\\n<script>\\n  !function(f,b,e,v,n,t,s)\\n  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?\\n  n.callMethod.apply(n,arguments):n.queue.push(arguments)};\\n  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=\'2.0\';\\n  n.queue=[];t=b.createElement(e);t.async=!0;\\n  t.src=v;s=b.getElementsByTagName(e)[0];\\n  s.parentNode.insertBefore(t,s)}(window, document,\'script\',\\n  \'https://connect.facebook.net/en_US/fbevents.js\');\\n  fbq(\'init\', \'763196851171087\');\\n  fbq(\'track\', \'PageView\');\\n</script>\\n\\n\\n\\n<script>\\n!function(e,i){if(!e.pixie){var n=e.pixie=function(e,i,a){n.actionQueue.push({action:e,actionValue:i,params:a})};n.actionQueue=[];var a=i.createElement("script");a.async=!0,a.src="//acdn.adnxs.com/dmp/up/pixie.js";var t=i.getElementsByTagName("head")[0];t.insertBefore(a,t.firstChild)}}(window,document);\\npixie(\'init\', \'c09cddb4-6571-4001-b052-4b614cb6b53f\');\\n</script>\\n\\n\\n<script>\\npixie(\'event\', \'PageView\');\\n</script>\\n\\n \\n<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11007451741"></script>\\n<script>\\n  window.dataLayer = window.dataLayer || [];\\n  function gtag(){dataLayer.push(arguments);}\\n  gtag(\'js\', new Date());\\n\\n  gtag(\'config\', \'AW-11007451741\');\\n</script>',
+        productScript: '\\n<img src="https://secure.adnxs.com/seg?add=20525724&t=2" width="1" height="1" />\\n\\n\\n<script>\\n_loopaSmartEvents.utils.addSpanToHead(\'<img s\' + \'rc="https://www.face\' + \'book.com/tr?id=763196851171087&ev=ViewContent&cd[content_ids]=\' +  _loopaSmartEvents.productParsingData.productId() + \'&cd[price]=\' + _loopaSmartEvents.productParsingData.price().toString() +\'&cd[housingType]=\' + _loopaSmartEvents.productParsingData.category() + \'&cd[saleType]=\' + _loopaSmartEvents.productParsingData.productType() +\'&cd[location]=\' + _loopaSmartEvents.productParsingData.customField1() + \'&cd[bed]=\' + _loopaSmartEvents.productParsingData.customField4() +\'&cd[bath]=\' + _loopaSmartEvents.productParsingData.customField3() + \'&noscript=1" height="1" width="1" style="display:none"/>\');\\n  \\n   pixie("event", "ItemView", {\\n    sale_type: _loopaSmartEvents.productParsingData.productType(),\\n    housing_type: _loopaSmartEvents.productParsingData.category(),\\n    price_number: _loopaSmartEvents.productParsingData.price(),\\n    location: encodeURI(_loopaSmartEvents.productParsingData.customField1()),    \\n    bed: _loopaSmartEvents.productParsingData.customField3()\\n  });\\n</script>',
+        conversionScript: '\\n<img src="https://secure.adnxs.com/px?id=1207739&t=2" width="1" height="1" />\\n\\n\\n<img  src="https://www.facebook.com/tr?id=763196851171087&ev=Lead&noscript=1&cd[enquiryType]=[[TYPE]]" width="1" height="1" />\\n\\n<script>\\n  	pixie("event", "Lead", {            \\n		item_type: "[[TYPE]]"\\n	});\\n</script>\\n\\n<script>\\nswitch ("[[TYPE]]") {\\ncase "Call":\\ngtag(\'event\', \'conversion\', {\'send_to\': \'AW-11007451741/Sm7TCMvkhoAYEN3E4YAp\'});\\nwindow._loopaSmartEvents.utils.addSpanToHead(\'<im\' + \'g sr\' + \'c="https://secure.adnxs.com/px?id=1263024&t=2" width="1" height="1" />\');\\nbreak;\\n\\ncase "Save":\\ngtag(\'event\', \'conversion\', {\'send_to\': \'AW-11007451741/WQrLCNTkhoAYEN3E4YAp\'});\\nwindow._loopaSmartEvents.utils.addSpanToHead(\'<im\' + \'g sr\' + \'c="https://secure.adnxs.com/px?id=1263023&t=2" width="1" height="1" />\');\\nbreak;\\n\\ncase "Whatsapp":\\ngtag(\'event\', \'conversion\', {\'send_to\': \'AW-11007451741/nSGVCNHkhoAYEN3E4YAp\'});\\nwindow._loopaSmartEvents.utils.addSpanToHead(\'<im\' + \'g sr\' + \'c="https://secure.adnxs.com/px?id=1263025&t=2" width="1" height="1" />\');\\nbreak;\\n\\ncase "Email":\\ngtag(\'event\', \'conversion\', {\'send_to\': \'AW-11007451741/tNvOCM7khoAYEN3E4YAp\'});\\nwindow._loopaSmartEvents.utils.addSpanToHead(\'<im\' + \'g sr\' + \'c="https://secure.adnxs.com/px?id=1263020&t=2" width="1" height="1" />\');\\nbreak;\\ncase "Contact":\\ngtag(\'event\', \'conversion\', { \'send_to\': \'AW-11007451741/r9_tCLTUloMYEN3E4YAp\'});\\nwindow._loopaSmartEvents.utils.addSpanToHead(\'<im\' + \'g sr\' + \'c="https://secure.adnxs.com/px?id=1640127&t=2" width="1" height="1" />\');\\nbreak;    \\ndefault:\\n}\\n</script>',
+        addToCartScript: '\\n<img src="https://secure.adnxs.com/seg?add=20525725&t=2" width="1" height="1" />\\n',
+        genericActionScript: '',
+        allowCookieMessage: false,
+        messageSelector: '',
+        includePostscribe: false,
+        autoTriggerOnHashChange: false,
+        enableEU: false,
+        postParsedData: false,
+        audienceSplitScript: '',
+        enableActionTracking: false
+        };
+
+        loopaSmartEvents.productParsingData = {
+        title: function() { return loopaSmartEvents.utils.getMetadataByProperty("og:title").replace (" | Property Finder", "") },
+        itemUrl: function() { return document.querySelector("link[rel='canonical']") != null ? document.querySelector("link[rel='canonical']").href : '' },
+        productId: function() { return typeof loopaData  !== 'undefined' && document.location.href.indexOf("/en/") > 0 ? loopaData.ProductId : "" },
+        description: function() { return '' },
+        mainImage: function() { return "null" },
+        images: function() { return '' },
+        language: function() { return '' },
+        price: function() { return typeof loopaData  !== 'undefined' ? loopaData.Price : "" },
+        rrp: function() { return '' },
+        brandName: function() { return '' },
+        colour: function() { return '' },
+        stock: function() { return '' },
+        category: function() { return loopaData.HousingType },
+        subCategory: function() { return '' },
+        mpn: function() { return '' },
+        gtin: function() { return '' },
+        productType: function() { return loopaData.SaleType },
+        customField1: function() { return loopaData.Region ? loopaData.Region.trim() : "" },
+        customField2: function() { return '' },
+        customField3: function() { return loopaData.Bedrooms > 0 ? loopaData.Bedrooms : "studio" },
+        customField4: function() { return loopaData.Bathrooms },
+        customField5: function() { return '' },
+        customField6: function() { return '' },
+        customField7: function() { return document.querySelector(".agent-avatar__image img") != null ? document.querySelector(".agent-avatar__image img").src : ""	 },
+        customField8: function() { return document.querySelector(".property-agent__name") != null ? document.querySelector(".property-agent__name").innerText : "" },
+        customField9: function() { return '' },
+        customField10: function() { return '' },
+        customField11: function() { return document.querySelector(".property-agent__broker-image img") != null ? document.querySelector(".property-agent__broker-image img").src : "" },
+        customField12: function() { return window.tealium != null ? window.tealium.broker_name : "" },
+        customField13: function() { return window.tealium != null ? window.tealium.broker_id : "" },
+        customField14: function() { return '' },
+        customField15: function() { return window.tealium != null ? window.tealium.property_location_community : "" },
+        customField16: function() { return '' },
+        latitude: function() { return '' },
+        longitude: function() { return '' }
+        };
+
+        loopaSmartEvents.gdprSettings = {
+        mode: 'BlockEu',
+        applyRulesOutsideEu: false,
+        cookieAllowedCheckScript: function() { return false },
+        cookieDisabledCheckScript: function() { return false }
+        };
+
+        loopaSmartEvents.userData = {
+        hasCookie: false,
+        userId: '',
+        externalNetworks : [  ]
+        };
+
+        }());

@@ -1,0 +1,101 @@
+<div class="pagination">
+    <ul id="pagination">
+        <li><a href="#" id="prev">Previous</a></li>
+        <li><a href="#" data-page="1">1</a></li>
+        <li><a href="#" data-page="2">2</a></li>
+        <li class="active"><a href="#" data-page="3">3</a></li>
+        <li><a href="#" data-page="4">4</a></li>
+        <li><a href="#" data-page="5">5</a></li>
+        <li><a href="#" id="next">Next</a></li>
+    </ul>
+</div>
+
+<div id="content">
+    <p>Content for page 3</p>
+</div>
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .pagination ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .pagination li {
+        display: inline;
+        margin: 0 5px;
+    }
+
+    .pagination a {
+        text-decoration: none;
+        padding: 10px 15px;
+        color: white;
+        background-color: red;
+        border-radius: 5px;
+        border: 1px solid red;
+        font-weight: bold;
+    }
+
+    .pagination .active a {
+        background-color: white;
+        color: red;
+    }
+
+    .pagination a:hover {
+        background-color: white;
+        color: red;
+    }
+
+    #content {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+<script>
+    document.querySelectorAll('.pagination a[data-page]').forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Handle page navigation
+            navigateToPage(button.getAttribute('data-page'));
+        });
+    });
+
+    document.getElementById('prev').addEventListener('click', function(event) {
+        event.preventDefault();
+        const currentPage = document.querySelector('.pagination li.active a').getAttribute('data-page');
+        const prevPage = parseInt(currentPage) - 1;
+        if (prevPage >= 1) {
+            navigateToPage(prevPage);
+        }
+    });
+
+    document.getElementById('next').addEventListener('click', function(event) {
+        event.preventDefault();
+        const currentPage = document.querySelector('.pagination li.active a').getAttribute('data-page');
+        const nextPage = parseInt(currentPage) + 1;
+        const totalPages = document.querySelectorAll('.pagination a[data-page]').length;
+        if (nextPage <= totalPages) {
+            navigateToPage(nextPage);
+        }
+    });
+
+    function navigateToPage(page) {
+        // Remove active class from all buttons
+        document.querySelectorAll('.pagination li').forEach(function(li) {
+            li.classList.remove('active');
+        });
+
+        // Add active class to the clicked button or corresponding page button
+        document.querySelector('.pagination a[data-page="' + page + '"]').parentElement.classList.add('active');
+
+        // Load the content corresponding to the selected page
+        document.getElementById('content').innerHTML = '<p>Content for page ' + page + '</p>';
+    }
+</script>

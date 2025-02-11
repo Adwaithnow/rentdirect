@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Direct</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="property-style.css">
+</head>
+
+<body>
+    <header class="bg-dark text-white">
+        <nav class="navbar navbar-expand-lg py-2 navbar-dark navbar-bg-dark ">
+            <div class="container">
+                <a class="navbar-brand" href="index.php">
+                    <img src="assets/images/logo.png" alt="Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="rent.html">Rent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="findagent.html">Find Agent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="auth-buttons ml-lg-2 mt-2 mt-lg-0">
+                        <a href="login.html" class="btn btn-outline-light rounded-0 mr-2 ">Login Now</a>
+                        <a href="postproperty.html" class="btn btn-danger rounded-0">Post Property</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <br>
+    <style>
+        .box {
+            width: 100%;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(209, 6, 6, 0.1);
+            background-color: #fff;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+    </style>
+
+    <section class="head-path-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="header-path">
+                        <a href="rent.html">
+                            <h5><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                                    width="24px" fill="#EA3323">
+                                    <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+                                </svg>Back to search</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <a href="propertypage.html">
+                        <h5><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#000000">
+                                <path
+                                    d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+                            </svg>Home -- Property Page</h5>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <div class="container mt-5">
+            <div class="box">
+                <h2>Search</h2>
+                <div class="container">
+                    <!-- Search Bar -->
+                    <div class="search-bar">
+                        <form class="row g-3">
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Enter location or community">
+                            </div>
+                            <div class="col-md-2">
+                                <select class="form-select">
+                                    <option selected>Property Type</option>
+                                    <option value="1">Apartment</option>
+                                    <option value="2">Villa</option>
+                                    <option value="3">Floor Villa</option>
+                                    <option value="4">Independent House</option>
+                                    <option value="5">Studio</option>
+                                    <option value="6">Mulhaq</option>
+                                    <option value="7">Office Space </option>
+                                    <option value="8">Shop</option>
+                                    <option value="9">Warehous </option>
+                                    <option value="10">Warehous Garage</option>
+                                    <option value="11">Cloud Kitchen</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <label for="pricerange">Price Range</label>
+                                    <input type="text" id="pricerange" name="pricerange" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select">
+                                    <option selected>Bedrooms</option>
+                                    <option value="1">Studio</option>
+                                    <option value="2">1 Bedroom</option>
+                                    <option value="3">2 Bedrooms</option>
+                                    <option value="4">3 Bedrooms</option>
+                                    <option value="5">4 Bedrooms</option>
+                                    <option value="6">5+ Bedrooms</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn search-button w-100">Search</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Toggle Filters Button -->
+                    <button class="btn toggle-filters-button" onclick="toggleFilters()">More Filters</button>
+
+                    <!-- Filters -->
+                    <div class="filters" id="moreFiltersSection">
+                        <div class="row">
+                            <div class="col-md-3 filter-item">
+                                <label for="furnishing" class="form-label">Furnishing</label>
+                                <select class="form-select" id="furnishing">
+                                    <option selected>Any</option>
+                                    <option value="1">Furnished</option>
+                                    <option value="2">Unfurnished</option>
+                                    <option value="3">Semi furnished</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 filter-item">
+                                <label for="baths" class="form-label">Bathrooms</label>
+                                <select class="form-select" id="baths">
+                                    <option selected>Any</option>
+                                    <option value="1">1 Bathroom</option>
+                                    <option value="2">2 Bathrooms</option>
+                                    <option value="3">3 Bathrooms</option>
+                                    <option value="4">4+ Bathrooms</option>
+                                    <option value="5">5+ Bathrooms</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 filter-item">
+                                <label for="area" class="form-label">Area (sq m)</label>
+                                <select class="form-select" id="area">
+                                    <option selected>Any</option>
+                                    <option value="1">0 - 10 m</option>
+                                </select>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 filter-item">
+                                <label class="form-label"> </label>
+                                <h5>Select Amenities</h5>
+                                <br>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="balcony" name="balcony">
+                                    <img src="assets/icons/balcony.png" alt="Balcony">
+                                    <label for="balcony">Balcony</label>
+                                </div>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="parking" name="parking">
+                                    <img src="assets/images/parking.png" alt="Parking">
+                                    <label for="parking">Parking</label>
+                                </div>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="pool" name="pool">
+                                    <img src="assets/images/swimming (1) 1.png" alt="Pool">
+                                    <label for="pool">Pool</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 filter-item">
+                                <br>
+                                <br>
+                                <br>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="electricity" name="electricity">
+                                    <img src="AllImages/elec.png" alt="internet">
+                                    <label for="electricity">Electricity</label>
+                                </div>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="water" name="water">
+                                    <img src="AllImages/water.png" alt="water">
+                                    <label for="water">Water</label>
+                                </div>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="pool" name="internet">
+                                    <img src="assets/images/wifi.png" alt="internet">
+                                    <label for="internet">Internet</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 filter-item">
+                                <br>
+                                <br>
+                                <br>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="gym" name="gym">
+                                    <img src="assets/images/weight 1.png" alt="gym">
+                                    <label for="gym">Gym</label>
+                                </div>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="bbq" name="bbq">
+                                    <img src="assets/images/Grill.png" alt="bbq">
+                                    <label for="bbq">Barbecue</label>
+                                </div>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="park" name="park">
+                                    <img src="assets/images/park.png" alt="park">
+                                    <label for="park">Childrens park</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 filter-item">
+                                <br>
+                                <br>
+                                <br>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="ac" name="ac">
+                                    <img src="AllImages/centralac.png" alt="ac">
+                                    <label for="ac">AC</label>
+                                </div>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="cctv" name="security">
+                                    <img src="assets/icons/security.png" alt="security">
+                                    <label for="security">security</label>
+                                </div>
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" id="cctv" name="cctv">
+                                    <img src="assets/images/cctv.png" alt="cctv">
+                                    <label for="cctv">CCTV</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function toggleFilters() {
+                const filtersSection = document.getElementById('moreFiltersSection');
+                if (filtersSection.style.display === 'none' || filtersSection.style.display === '') {
+                    filtersSection.style.display = 'block';
+                } else {
+                    filtersSection.style.display = 'none';
+                }
+            }
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <style>
+            .search-bar {
+                padding: 15px;
+                background-color: #e63946;
+                border-radius: 8px;
+                margin-bottom: 20px;
+            }
+
+            .filters {
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+                display: none;
+                /* Hidden by default */
+            }
+
+            .filter-item {
+                margin-bottom: 15px;
+            }
+
+            .search-button {
+                background-color: #e63946;
+                font: #fff;
+
+                color: #f8f9fa;
+            }
+
+            .search-button :hover {
+                background-color: #000;
+
+                color: #f8f9fa;
+            }
+
+            .filter-checkbox {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                font-size: 1em;
+            }
+
+            .filter-checkbox img {
+                width: 24px;
+                height: 24px;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            .toggle-filters-button {
+                background-color: #007bff;
+                color: white;
+                margin-bottom: 10px;
+            }
+        </style>
+    </section>
+    <!-- BOX search locations-->
+    <section>
+
+
+        <br>
+    </section>
+
+    <!-- premium-properties section -->
+    <section class="premium-properties py-5">
+
+        <div class="container text-center">
+            <h2> Properties for rent in Kuwait</h2>
+            <div class="row">
+                <!-- Repeat this block for each property -->
+                <div class="col-md-4 mb-4">
+
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="premium-badge">Premium</span>
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+                            <img src="assets/images/1.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="card-body">
+                                <div class="d-flex  justify-content-between">
+                                    <h3 class="card-title">Ocean Star</h3>
+                                    <p class="card-text">$2400/Month</p>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bedrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bathrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Square Ft</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">LOREM</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="premium-badge">Premium</span>
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+
+                            <img src="assets/images/2.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Ocean Star</h3>
+                                    <p class="card-text">$2400/Month</p>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bedrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bathrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Square Ft</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">LOREM</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="premium-badge">Premium</span>
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+                            <img src="assets/images/3.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Ocean Star</h3>
+                                    <p class="card-text">$2400/Month</p>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bedrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bathrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Square Ft</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">LOREM</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="premium-badge">Premium</span>
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+                            <img src="assets/images/2.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Ocean Star</h3>
+                                    <p class="card-text">$2400/Month</p>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bedrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bathrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Square Ft</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">LOREM</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="premium-badge">Premium</span>
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+                            <img src="assets/images/1.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Ocean Star</h3>
+                                    <p class="card-text">$2400/Month</p>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bedrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bathrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Square Ft</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">LOREM</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="premium-badge">Premium</span>
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+                            <img src="assets/images/3.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">Ocean Star</h3>
+                                    <p class="card-text">$2400/Month</p>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bedrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Bathrooms</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <p class="card-text mb-0 ml-2">Square Ft</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">LOREM</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Repeat ends -->
+            </div>
+
+        </div>
+
+    </section>
+    <!-- property details -->
+    <section class="premium-properties py-5">
+        <div class="container text-center">
+            <div class="row">
+                <!-- Repeat this block for each property -->
+                <div class="col-md-4 mb-4">
+
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+
+                            <img src="assets/images/3.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="row text-center justify-content-between">
+                                <div class="d-flex  justify-content-between">
+                                    <h3 class="card-title" style="color: rgb(32, 13, 244);">Ocean Star</h3>
+                                    <div class="col d-flex align-items-center justify-content-end">
+
+                                        <h3 class="card-title" style="color: #DD2328;;">350</h3>
+                                        <p class="card-text">/Month</p>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">Jleeb Al shyoukh,Kuwait</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-md-4 mb-4">
+
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+
+                            <img src="assets/images/3.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="row text-center justify-content-between">
+                                <div class="d-flex  justify-content-between">
+                                    <h3 class="card-title" style="color: rgb(32, 13, 244);">Ocean Star</h3>
+                                    <div class="col d-flex align-items-center justify-content-end">
+
+                                        <h3 class="card-title" style="color: #DD2328;;">350</h3>
+                                        <p class="card-text">/Month</p>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">Jleeb Al shyoukh,Kuwait</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-md-4 mb-4">
+
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+
+                            <img src="assets/images/3.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="row text-center justify-content-between">
+                                <div class="d-flex  justify-content-between">
+                                    <h3 class="card-title" style="color: rgb(32, 13, 244);">Ocean Star</h3>
+                                    <div class="col d-flex align-items-center justify-content-end">
+
+                                        <h3 class="card-title" style="color: #DD2328;;">350</h3>
+                                        <p class="card-text">/Month</p>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">Jleeb Al shyoukh,Kuwait</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-md-4 mb-4">
+
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+
+                            <img src="assets/images/1.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="row text-center justify-content-between">
+                                <div class="d-flex  justify-content-between">
+                                    <h3 class="card-title" style="color: rgb(32, 13, 244);">Ocean Star</h3>
+                                    <div class="col d-flex align-items-center justify-content-end">
+
+                                        <h3 class="card-title" style="color: #DD2328;;">350</h3>
+                                        <p class="card-text">/Month</p>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">Jleeb Al shyoukh,Kuwait</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 mb-4">
+
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+
+                            <img src="assets/images/3.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="row text-center justify-content-between">
+                                <div class="d-flex  justify-content-between">
+                                    <h3 class="card-title" style="color: rgb(32, 13, 244);">Ocean Star</h3>
+                                    <div class="col d-flex align-items-center justify-content-end">
+
+                                        <h3 class="card-title" style="color: #DD2328;;">350</h3>
+                                        <p class="card-text">/Month</p>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">Jleeb Al shyoukh,Kuwait</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-md-4 mb-4">
+
+                    <div class="card rounded-image">
+                        <a href="propertypage.html">
+                            <span class="verified-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960"
+                                    width="18px" fill="#FFFFFF">
+                                    <path
+                                        d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z" />
+                                </svg> Verified</span>
+
+                            <img src="assets/images/3.jpg" alt="Ocean Star" class="card-img-top rounded-image">
+                            <div class="row text-center justify-content-between">
+                                <div class="d-flex  justify-content-between">
+                                    <h3 class="card-title" style="color: rgb(32, 13, 244);">Ocean Star</h3>
+                                    <div class="col d-flex align-items-center justify-content-end">
+
+                                        <h3 class="card-title" style="color: #DD2328;;">350</h3>
+                                        <p class="card-text">/Month</p>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row text-center justify-content-between">
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bed.png" alt="Icon 1" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/bathroom.png" alt="Icon 2" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img src="assets/icons/maximize.png" alt="Icon 3" class="img-fluid"
+                                            style="width: 20px; height: 20px;">
+                                        <p class="card-text mb-0 ml-2">4</p>
+                                    </div>
+                                </div>
+
+                                <div class="row text-center mt-2 mx-2">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <p class="card-text mb-0 ml-2">Jleeb Al shyoukh,Kuwait</p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+
+
+
+                <!-- Repeat ends -->
+            </div>
+        </div>
+
+    </section>
+    <!-- Property details rent -->
+    <div class="pagination">
+        <ul id="pagination">
+            <li><a href="#" id="prev">Previous</a></li>
+            <li><a href="rent2.html" data-page="1">1</a></li>
+            <li><a href="rent2.html" data-page="2">2</a></li>
+            <li class="active"><a href="#" data-page="3">3</a></li>
+            <li><a href="rent2.html" data-page="4">4</a></li>
+            <li><a href="rent2.html" data-page="5">5</a></li>
+            <li><a href="rent2.html" id="next">Next</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <p>Content for page 3</p>
+    </div>
+
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .pagination ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .pagination li {
+            display: inline;
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            padding: 10px 15px;
+            color: white;
+            background-color: #DD2328;
+            border-radius: 5px;
+            border: 1px solid #DD2328;
+            font-weight: bold;
+        }
+
+        .pagination .active a {
+            background-color: white;
+            color: #DD2328;
+        }
+
+        .pagination a:hover {
+            background-color: white;
+            color: #DD2328;
+        }
+
+        #content {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        document.querySelectorAll('.pagination a[data-page]').forEach(function (button) {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // Handle page navigation
+                navigateToPage(button.getAttribute('data-page'));
+            });
+        });
+
+        document.getElementById('prev').addEventListener('click', function (event) {
+            event.preventDefault();
+            const currentPage = document.querySelector('.pagination li.active a').getAttribute('data-page');
+            const prevPage = parseInt(currentPage) - 1;
+            if (prevPage >= 1) {
+                navigateToPage(prevPage);
+            }
+        });
+
+        document.getElementById('next').addEventListener('click', function (event) {
+            event.preventDefault();
+            const currentPage = document.querySelector('.pagination li.active a').getAttribute('data-page');
+            const nextPage = parseInt(currentPage) + 1;
+            const totalPages = document.querySelectorAll('.pagination a[data-page]').length;
+            if (nextPage <= totalPages) {
+                navigateToPage(nextPage);
+            }
+        });
+
+        function navigateToPage(page) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.pagination li').forEach(function (li) {
+                li.classList.remove('active');
+            });
+
+            // Add active class to the clicked button or corresponding page button
+            document.querySelector('.pagination a[data-page="' + page + '"]').parentElement.classList.add('active');
+
+            // Load the content corresponding to the selected page
+            document.getElementById('content').innerHTML = '<p>Content for page ' + page + '</p>';
+        }
+    </script>
+
+
+    <style>
+        .property-section {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            width: 200%;
+            height: 400px;
+        }
+
+        .property-image {
+            flex: 0 0 150px;
+            margin-right: 10px;
+        }
+
+        .property-details {
+            flex: 1;
+        }
+
+        .property-image img {
+            width: 400px;
+            height: 300px;
+            border-radius: 20px;
+        }
+
+        .call-btn2 {
+            background-color: #DD2328;
+            color: white;
+            width: 20%;
+            margin-top: 10px;
+        }
+
+        .call-mail2 {
+            background-color: white;
+            border: solid 1px #DD2328;
+            color: #DD2328;
+            width: 20%;
+            margin-top: 10px;
+        }
+
+        .call-whatsapp2 {
+            background-color: #4DBD43;
+            color: white;
+            width: 20%;
+            margin-top: 8px;
+            height: 51px;
+        }
+
+        .call-like2 {
+            background-color: white;
+            border: solid 1px #DD2328;
+            color: #DD2328;
+            width: 20%;
+            margin-top: 10px;
+        }
+
+        .call-rent {
+            background-color: rgb(113, 79, 236);
+            border: solid 1px #1605ce;
+            color: #cfcce8;
+            width: 50%;
+            margin-top: 10px;
+        }
+
+
+        .checkbox-image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .checkbox-image-label {
+            position: relative;
+            display: inline-block;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .checkbox-image-label input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            width: 70%;
+            height: 70%;
+        }
+
+        .checkbox-image-label input[type="checkbox"]:checked+img {
+            border: 2px solid blue;
+            /* Highlight selected image */
+            opacity: 0.7;
+            /* Adjust opacity for selected state */
+        }
+
+        .checkbox-image-label img {
+            display: block;
+            width: 80px;
+            /* Set a fixed width for all images */
+            height: 80px;
+            /* Set a fixed height for all images */
+            object-fit: cover;
+            /* Ensure images maintain aspect ratio */
+            transition: opacity 0.3s, border 0.3s;
+            cursor: pointer;
+        }
+
+        .checkbox-image-label:hover {
+            border-color: blue;
+            /* Highlight on hover */
+        }
+
+        .rent-range-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .rent-range-slider:hover {
+            opacity: 1;
+        }
+
+        .rent-range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #DD2328;
+            cursor: pointer;
+        }
+
+        .rent-range-slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #DD2328;
+            cursor: pointer;
+        }
+
+        .rent-range-slider::-ms-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #DD2328;
+            cursor: pointer;
+        }
+
+        @media (max-width: 576px) {
+            .slider-container {
+                padding: 0 15px;
+            }
+
+            .slider-label {
+                font-size: 14px;
+            }
+
+            #rentRangeLabel {
+                font-size: 14px;
+            }
+
+            .rent-range-slider {
+                height: 6px;
+            }
+
+            .rent-range-slider::-webkit-slider-thumb,
+            .rent-range-slider::-moz-range-thumb,
+            .rent-range-slider::-ms-thumb {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .contact-info svg {
+            margin-right: 8px;
+        }
+
+        .contact-info p {
+            margin: 0;
+        }
+    </style>
+    <footer class="text-white py-4">
+        <div class="container pt-4">
+            <div class="row">
+                <div class="col-md-3 col-lg-3">
+                    <a href="/">
+                        <img src="assets/images/logo.png" alt="Logo" width="100">
+
+                    </a>
+                    <h6 class="mt-3">Social Media Links</h6>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-instagram text-white me-3 px-2"></i></a>
+                        <a href="#"><i class="bi bi-facebook text-white me-3 px-2"></i></a>
+                        <a href="#"><i class="bi bi-twitter text-white me-3 px-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <h4>Useful Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="index.php" class="text-white">Home</a></li>
+                        <li><a href="rent.html" class="text-white">Rent</a></li>
+                        <li><a href="findagent.html" class="text-white">Find Agent</a></li>
+                        <li><a href="contact.html" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <h4>Legal</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="terms.html" class="text-white">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="text-white">Privacy and Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <h4>Contact</h4>
+
+                    <div class="contact-info">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px"
+                            fill="#FFFFFF">
+                            <path
+                                d="M480-301q99-80 149.5-154T680-594q0-90-56-148t-144-58q-88 0-144 58t-56 148q0 65 50.5 139T480-301Zm0 101Q339-304 269.5-402T200-594q0-125 78-205.5T480-880q124 0 202 80.5T760-594q0 94-69.5 192T480-200Zm0-320q33 0 56.5-23.5T560-600q0-33-23.5-56.5T480-680q-33 0-56.5 23.5T400-600q0 33 23.5 56.5T480-520ZM200-80v-80h560v80H200Zm280-520Z" />
+                        </svg>
+                        <p> Ibn Khaldon Street , </p>
+                        <p>Hawally , Kuwait</p>
+                    </div>
+
+                    <div class="contact-info">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px"
+                            fill="#FFFFFF">
+                            <path
+                                d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
+                        </svg>
+                        <p>info@rentdirect-q8.com</p>
+                    </div>
+
+                    <div class="contact-info">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px"
+                            fill="#FFFFFF">
+                            <path
+                                d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z" />
+                        </svg>
+                        <p> +965 92276201</p>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="text-center mt-4">
+                <p>@2024 All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>

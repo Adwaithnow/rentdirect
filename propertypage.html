@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://sachinchoolur.github.io/lightslider/dist/css/lightslider.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="property-style.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="slider.css">
+	<title>Document</title>
+</head>
+
+<body>
+	<header class="bg-dark text-white">
+		<nav class="navbar navbar-expand-lg py-2 navbar-dark navbar-bg-dark ">
+			<div class="container">
+				<a class="navbar-brand" href="index.php">
+					<img src="assets/images/logo.png" alt="Logo">
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item active">
+							<a class="nav-link" href="index.php">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="rent.html">Rent</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="findagent.html">Find Agent</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="contact.html">Contact</a>
+						</li>
+					</ul>
+					<div class="auth-buttons ml-lg-2 mt-2 mt-lg-0">
+						<a href="login.html" class="btn btn-outline-light rounded-0 mr-2 ">Login Now</a>
+						<a href="postproperty.html" class="btn btn-danger rounded-0">Post Property</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+	</header>
+	<section class="head-path-page">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="header-path">
+						<a href="index.php">
+							<h5><i class="fa fa-arrow-left"></i>Back to search</h5>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<h5><i class="fa-solid fa-house"></i>Home -- Property Page</h5>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<br>
+
+	<section class="sldr">
+		<div class="slider">
+			<div class="slider-main">
+				<img id="main-image" src="assets/images/1.jpg" alt="Main Image" onclick="openModal(currentIndex)">
+				<button class="slider-control prev" onclick="prevImage()">&#10094;</button>
+				<button class="slider-control next" onclick="nextImage()">&#10095;</button>
+			</div>
+			<div class="thumbnail-gallery">
+				<div class="thumbnail-item">
+					<img src="assets/images/1.jpg" alt="Thumbnail 1" class="thumbnail" onclick="changeImage(0)">
+				</div>
+				<div class="thumbnail-item">
+					<img src="assets/images/2.jpg" alt="Thumbnail 2" class="thumbnail" onclick="changeImage(1)">
+				</div>
+				<!-- Add more thumbnails here -->
+				<div class="thumbnail-item">
+					<img src="assets/images/3.jpg" alt="Thumbnail 3" class="thumbnail" onclick="changeImage(2)">
+				</div>
+				<!-- Continue for all 15 images -->
+			</div>
+		</div>
+
+
+
+		<!-- Modal for Enlarged Image -->
+		<div id="imageModal" class="modal">
+			<span class="close" onclick="closeModal()">&times;</span>
+			<button class="modal-control prev" onclick="prevModalImage()">&#10094;</button>
+			<img class="modal-content" id="modal-image">
+			<button class="modal-control next" onclick="nextModalImage()">&#10095;</button>
+		</div>
+	</section>
+
+	<style>
+		/* Basic styling */
+		.slider {
+			display: flex;
+			align-items: center;
+			margin: 20px auto;
+			max-width: 1450px;
+			height: 900px;
+			overflow: hidden;
+		}
+
+		.slider-main {
+			position: relative;
+			flex: 1;
+		}
+
+		.slider-main img {
+			width: 1150px;
+			height: 900px;
+			display: block;
+			cursor: pointer;
+		}
+
+		.slider-control {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			background-color: rgba(0, 0, 0, 0.5);
+			color: #fff;
+			border: none;
+			padding: 10px;
+			cursor: pointer;
+		}
+
+		.prev {
+			left: 10px;
+		}
+
+		.next {
+			right: 10px;
+		}
+
+		.thumbnail-gallery {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			margin-left: 20px;
+		}
+
+		.thumbnail-item {
+			cursor: pointer;
+		}
+
+		.thumbnail {
+			width: 135px;
+			height: 85px;
+			border: 2px solid transparent;
+		}
+
+		.thumbnail:hover {
+			border-color: #007bff;
+		}
+
+		/* Modal Styling */
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 1000;
+			padding-top: 100px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0, 0, 0, 0.9);
+		}
+
+		.modal-content {
+			margin: auto;
+			display: block;
+			max-width: 80%;
+			max-height: 80%;
+		}
+
+		.close {
+			position: absolute;
+			top: 50px;
+			right: 35px;
+			color: #fff;
+			font-size: 40px;
+			font-weight: bold;
+			transition: 0.3s;
+			cursor: pointer;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: #bbb;
+			text-decoration: none;
+			cursor: pointer;
+		}
+
+		.modal-control {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			background-color: rgba(0, 0, 0, 0.5);
+			color: #fff;
+			border: none;
+			padding: 10px;
+			cursor: pointer;
+			z-index: 10;
+		}
+
+		.modal-control.prev {
+			left: 20px;
+		}
+
+		.modal-control.next {
+			right: 20px;
+		}
+
+		/* media query */
+		/* Default styling for larger screens (e.g., desktops) */
+		@media (min-width: 1200px) {
+			.slider {
+				max-width: 1450px;
+				height: 900px;
+			}
+
+			.slider-main img {
+				width: 1150px;
+				height: 900px;
+			}
+
+			.thumbnail {
+				width: 135px;
+				height: 85px;
+			}
+
+			.modal-content {
+				max-width: 1100px;
+				max-height: 750px;
+			}
+		}
+
+		/* Medium screens (e.g., small laptops, tablets in landscape) */
+		@media (max-width: 1199px) {
+			.slider {
+				max-width: 1000px;
+				height: 700px;
+			}
+
+			.slider-main img {
+				width: 800px;
+				height: 700px;
+			}
+
+			.thumbnail {
+				width: 100px;
+				height: 65px;
+			}
+
+			.modal-content {
+				max-width: 800px;
+				max-height: 450px;
+			}
+		}
+
+		/* Small screens (e.g., tablets in portrait mode, large smartphones) */
+		@media (max-width: 768px) {
+			.slider {
+				flex-direction: column;
+				align-items: flex-start;
+				max-width: 600px;
+				height: auto;
+			}
+
+			.slider-main img {
+				width: 100%;
+				height: auto;
+			}
+
+			.thumbnail-gallery {
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: center;
+				margin-left: 0;
+				margin-top: 20px;
+			}
+
+			.thumbnail {
+				width: 80px;
+				height: 50px;
+			}
+
+			.modal-content {
+				max-width: 90%;
+				max-height: 90%;
+			}
+
+			.slider-control {
+				padding: 5px;
+			}
+
+			.modal-control {
+				padding: 5px;
+			}
+		}
+
+		/* Extra small screens (e.g., smartphones) */
+		@media (max-width: 480px) {
+			.slider {
+				max-width: 100%;
+				height: auto;
+				padding: 10px;
+			}
+
+			.slider-main img {
+				width: 100%;
+				height: auto;
+			}
+
+			.thumbnail {
+				width: 60px;
+				height: 40px;
+			}
+
+			.thumbnail-gallery {
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: space-around;
+			}
+
+			.modal-content {
+				max-width: 95%;
+				max-height: 95%;
+			}
+
+			.slider-control,
+			.modal-control {
+				padding: 3px;
+				font-size: 18px;
+			}
+
+			.close {
+				font-size: 30px;
+				top: 20px;
+				right: 20px;
+			}
+		}
+
+
+		.contact-info {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+
+		.contact-info svg {
+			margin-right: 8px;
+		}
+
+		.contact-info p {
+			margin: 0;
+		}
+	</style>
+
+	<!-- slider -->
+
+	<script>
+		let currentIndex = 0;
+		const images = [
+			"assets/images/1.jpg",
+			"assets/images/2.jpg",
+			"assets/images/3.jpg",
+			// Add more image paths here...
+		];
+
+		function openModal(index) {
+			currentIndex = index;
+			const modal = document.getElementById("imageModal");
+			const modalImg = document.getElementById("modal-image");
+
+			modal.style.display = "block";
+			modalImg.src = images[currentIndex];
+		}
+
+		function closeModal() {
+			const modal = document.getElementById("imageModal");
+			modal.style.display = "none";
+			modal.style.height = "900px";
+		}
+
+		function changeImage(index) {
+			currentIndex = index;
+			const mainImg = document.getElementById("main-image");
+			mainImg.src = images[currentIndex];
+		}
+
+		function prevModalImage() {
+			currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+			document.getElementById("modal-image").src = images[currentIndex];
+		}
+
+		function nextModalImage() {
+			currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+			document.getElementById("modal-image").src = images[currentIndex];
+		}
+
+	</script>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="head-property">
+					<h5>APARTMENT FOR SALE IN SKY RESIDENCES, EXPO CITY</h5>
+					<h2>Near Al Maktoum International Airport</h2>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="contact-info">
+					<img class="ab" src="assets/images/clock (1).png" alt="">
+					<h6 class="ab">Time - 9AM to 6PM</h6>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="property-main-feature">
+					<div class="row">
+
+						<div class="col-md-3">
+							<h6>Monthly Rent</h6>
+							<h5>$1,470 - $5,485</h5>
+						</div>
+						<div class="col-md-3">
+							<h6>Bedrooms</h6>
+							<h5>Studio - 2 bd</h5>
+						</div>
+						<div class="col-md-3">
+							<h6>Bathrooms</h6>
+							<h5>1-2 Ba</h5>
+						</div>
+						<div class="col-md-3">
+							<h6>Square - Feet</h6>
+							<h5>471 - 1,101 sq ft</h5>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row" style="margin-bottom: 40px;">
+					<h3 style="margin-bottom: 10px;">Contact</h3>
+					<div class="col-md-3">
+						<div class="contact-info">
+							<img class="ab" src="assets/images/telephone (2).png" alt="tel">
+							<h6 class="ab">965-000 0000</h6>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="contact-info">
+							<img class="ab" src="assets/images/language (1).png" alt="">
+							<h6 class="ab">Language - English</h6>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="contact-info">
+							<img class="ab" src="assets/images/clock (1).png" alt="">
+							<h6 class="ab">Time - 9AM to 6PM</h6>
+						</div>
+					</div>
+
+
+				</div>
+				<!-- common amenities -->
+				<div class="row" style="margin-bottom: 40px;">
+					<h3 style="margin-bottom: 15px;">Community Amenities</h3>
+					<div class="col-md-3">
+						<div class="Amenities-short">
+							<img src="assets/images/swimming (1) 1.png" alt="">
+							<h5>Swimming Pool</h5>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="Amenities-short">
+							<img src="assets/images/weight 1.png" alt="">
+							<h5>Fitness Center</h5>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="Amenities-short">
+							<img src="assets/images/basket 1.png" alt="">
+							<h5>Laundry Facilities</h5>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="Amenities-short">
+							<img src="assets/images/lift 1.png" alt="">
+							<h5>Elevator</h5>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="row" style="margin-bottom: 40px;">
+					<div class="col-md-4">
+						<ul class="facilities">
+							<li>Laundry Facilities</li>
+							<li>Property Manager on Site</li>
+							<li>Doorman</li>
+							<li>Concierge</li>
+							<li>24 Hour Access</li>
+						</ul>
+
+					</div>
+
+					<div class="col-md-4">
+						<ul class="facilities">
+							<li>On-Site Retail</li>
+							<li>Health Club Discount</li>
+							<li>Public Transportation</li>
+							<li>Elevator</li>
+							<li>Lounge</li>
+						</ul>
+
+					</div>
+
+					<div class="col-md-4">
+						<ul class="facilities">
+							<li>Fitness Center</li>
+							<li>Pool</li>
+							<li>Sundeck</li>
+							<li>Courtyard</li>
+							<li>Grill</li>
+						</ul>
+
+					</div>
+
+				</div>
+
+				<div class="row" style="margin-bottom: 30px;">
+					<h3 style="margin-bottom: 10px;">Description</h3>
+					<p>Discover luxurious living in this furnished, super spacious studio apartment in Lago Vista Tower.
+						Ideal for professionals, this unit features well-sized bedroom, a modern kitchen, and a private
+						balcony with stunning views. This apartment is designed with ample space, offering plenty of
+						room for both living and entertaining.
+					<p>The layout is perfect for those who appreciate open, airy spaces.</p>
+
+					<p>Residents enjoy access to premium amenities including a swimming pool, gym, 24/7 security, and
+						covered parking </p>
+
+
+
+
+					<p>All information given above is to the best of our knowledge and KORE accepts no liability for any
+						incorrect information.</p>
+				</div>
+
+
+			</div>
+			<!-- contact property -->
+			<div class="col-md-4">
+				<div class="contact-sidebar">
+					<h3>Contact </h3>
+
+					<div style="display: flex;justify-content: center;">
+						<img src="AllImages/assets/images/Ayyaz-Ulde.webp" alt="">
+
+					</div>
+					<div style="margin-top: 20px;margin-bottom: 10px;justify-content: center;" class="contact-info">
+						<h4>Ayyaz-Ulde</h4>
+
+					</div>
+					<div style="margin-top: 5px;margin-left: 3px;">
+						<img class="ab" src="AllImages/assets/images/" alt="">
+						<h6 class="ab">Company Name</h6>
+						<br>
+					</div>
+					<div style="display: flex;justify-content: center;">
+						<button style="width: 150px;" class="btn call-btn"><i class="fa fa-phone"></i> CALL</button>
+						<button style="width: 150px;margin-left: .125px;" class="btn call-mail"><i
+								class="fa fa-envelope"></i> EMAIL</button>
+					</div>
+					<br>
+					<button style="width: 200px;" class="btn call-whtasapp"><i class="fa fa-whatsapp"></i>
+						WHATSAPP</button>
+					<br>
+					<div style="margin-top: 20px;margin-bottom: 10px;justify-content: center;" class="contact-info">
+						<img class="ab" src="assets/images/language 2.png" alt="">
+						<h6 class="ab">Language - English </h6>
+
+
+					</div>
+					<div style="margin-top: 20px;margin-bottom: 10px;justify-content: center;" class="contact-info">
+						<img class="ab" src="assets/images/clock 2.png" alt="">
+						<h6 class="ab"> Time - 9AM to 6PM</h6>
+					</div>
+
+				</div>
+
+			</div>
+			<hr style="width: 890px;">
+
+
+			<!-- location -->
+			<div class="col-md-4">
+				<h3>Location</h3>
+				<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+					fill="#dd2328">
+					<path
+						d="M360-440h80v-110h80v110h80v-190l-120-80-120 80v190Zm120 254q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" />
+				</svg>
+				<tr>
+					<td>
+						<p>Kuwait, Al Asimah</p>
+					</td>
+				</tr>
+
+
+				<div style="display: flex;width: 1000px;">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d222494.9880718386!2d47.93066184147448!3d29.3853887036114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2skw!4v1724852476044!5m2!1sen!2skw"
+						width="880px" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+				</div>
+
+
+			</div>
+
+
+		</div>
+		<br>
+		<br>
+	</div>
+
+
+
+
+
+
+	<!-- footer -->
+
+
+	<footer class="text-white py-4">
+		<div class="container pt-4">
+			<div class="row">
+				<div class="col-md-3 col-lg-3">
+					<a href="/">
+						<img src="assets/images/logo.png" alt="Logo" width="100">
+
+					</a>
+					<h6 class="mt-3">Social Media Links</h6>
+					<div class="social-icons">
+						<a href="#"><i class="bi bi-instagram text-white me-3 px-2"></i></a>
+						<a href="#"><i class="bi bi-facebook text-white me-3 px-2"></i></a>
+						<a href="#"><i class="bi bi-twitter text-white me-3 px-2"></i></a>
+					</div>
+				</div>
+				<div class="col-md-3 col-lg-3">
+					<h4>Useful Links</h4>
+					<ul class="list-unstyled">
+						<li><a href="index.php" class="text-white">Home</a></li>
+						<li><a href="rent.html" class="text-white">Rent</a></li>
+						<li><a href="findagent.html" class="text-white">Find Agent</a></li>
+						<li><a href="contact.html" class="text-white">Contact</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-lg-3">
+					<h4>Legal</h4>
+					<ul class="list-unstyled">
+						<li><a href="terms.html" class="text-white">Terms & Conditions</a></li>
+						<li><a href="privacy.html" class="text-white">Privacy and Policy</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-lg-3">
+					<h4>Contact</h4>
+
+					<div class="contact-info">
+						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+							fill="#FFFFFF">
+							<path
+								d="M480-301q99-80 149.5-154T680-594q0-90-56-148t-144-58q-88 0-144 58t-56 148q0 65 50.5 139T480-301Zm0 101Q339-304 269.5-402T200-594q0-125 78-205.5T480-880q124 0 202 80.5T760-594q0 94-69.5 192T480-200Zm0-320q33 0 56.5-23.5T560-600q0-33-23.5-56.5T480-680q-33 0-56.5 23.5T400-600q0 33 23.5 56.5T480-520ZM200-80v-80h560v80H200Zm280-520Z" />
+						</svg>
+						<p> Ibn Khaldon Street , Hawally , Kuwait</p>
+
+					</div>
+
+					<div class="contact-info">
+						<svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 -960 960 960" width="21px"
+							fill="#FFFFFF">
+							<path
+								d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
+						</svg>
+						<p>info@rentdirect-q8.com</p>
+					</div>
+
+					<div class="contact-info">
+						<svg xmlns="http://www.w3.org/2000/svg" height="21px" viewBox="0 -960 960 960" width="21px"
+							fill="#FFFFFF">
+							<path
+								d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z" />
+						</svg>
+						<p> +965 92276201</p>
+					</div>
+
+				</div>
+
+			</div>
+			<div class="text-center mt-4">
+				<p>@2024 All Rights Reserved</p>
+			</div>
+		</div>
+	</footer>
+
+
+	<script src="assets/js/property-script.js"></script>
+
+	<!-- *********************************************************************************************************************************** -->
+	<script>
+		console.log("Script loaded"); // Debugging statement
+
+		const images = [
+			'assets/images/1.jpg',
+			'assets/images/2.jpg',
+			'assets/images/3.jpg',
+			'assets/images/a2.jpeg',
+			'assets/images/a3.jpg',
+			'assets/images/a4.jpg',
+			'assets/images/a5.jpg',
+			'assets/images/a6.jpg',
+			'assets/images/a1.jpg'
+
+
+		];
+
+
+		let currentIndex = 0;
+
+		function changeImage(src) {
+			console.log("Changing image to:", src); // Debugging statement
+			document.getElementById('main-image').src = src;
+			currentIndex = images.indexOf(src);
+		}
+
+		function nextImage() {
+			currentIndex = (currentIndex + 1) % images.length;
+			document.getElementById('main-image').src = images[currentIndex];
+		}
+
+		function prevImage() {
+			currentIndex = (currentIndex - 1 + images.length) % images.length;
+			document.getElementById('main-image').src = images[currentIndex];
+		}
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Direct</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="bg-dark text-white">
+        <nav class="navbar navbar-expand-lg py-2 navbar-dark navbar-bg-dark ">
+            <div class="container">
+                <a class="navbar-brand" href="index.php">
+                    <img src="assets/images/logo.png" alt="Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="rent.html">Rent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="findagent.html">Find Agent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="auth-buttons ml-lg-2 mt-2 mt-lg-0">
+                        <a href="login.html" class="btn btn-outline-light rounded-0 mr-2 ">Login Now</a>
+                        <a class="btn btn-danger rounded-0">Post Property</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <section>
+
+    </section>
+
+    <style>
+        /* Base Styles */
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .box {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            width: 150px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+
+        .counter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+
+        span {
+            width: 30px;
+            text-align: center;
+        }
+
+        .property-section {
+            background-color: #edf2f6;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .property-section h2 {
+            color: #e63946;
+        }
+
+        .option-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 150px;
+            box-sizing: border-box;
+        }
+
+        .option-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+
+        .option-item span {
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+            text-align: left;
+        }
+
+        .option-item input[type="checkbox"] {
+            margin-left: auto;
+            cursor: pointer;
+            accent-color: blue;
+        }
+
+        .option-item:hover {
+            border-color: blue;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-item input[type="checkbox"]:checked+img {
+            border: 2px solid blue;
+        }
+
+        .option-item input[type="checkbox"]:checked+span {
+            font-weight: bold;
+            color: blue;
+        }
+
+        .section-line {
+            border: 1px solid #e63946;
+            width: 80%;
+            margin: 10px auto;
+        }
+
+        .upload-box {
+            border: 2px dashed #cccccc;
+            width: 95%;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            margin-bottom: 10px;
+            position: relative;
+            text-align: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .upload-text {
+            font-size: 16px;
+            color: #777;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .small-upload-box {
+            border: 2px dashed #cccccc;
+            width: 95%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .small-upload-box input {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+        .box-content {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            width: 300px;
+            box-sizing: border-box;
+        }
+
+        .box-image {
+            width: 25px;
+            height: 25px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .box-text {
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+            text-align: left;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .form-check {
+            flex: 1 1 auto;
+            max-width: 800px;
+        }
+
+        /* Media Queries */
+
+        /* Mobile devices */
+        @media (max-width: 575.98px) {
+            .property-section {
+                width: 90%;
+            }
+
+            .property-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .option-item img {
+                width: 70px;
+                height: 60px;
+            }
+
+            .box-content {
+                width: 100%;
+            }
+
+            .box-image {
+                width: 8px;
+                height: 8px;
+            }
+
+            .box-text {
+                font-size: 12px;
+            }
+        }
+
+        /* Tablet devices */
+        @media (min-width: 576px) and (max-width: 991.98px) {
+            .property-section {
+                width: 80%;
+            }
+
+            .property-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .option-item img {
+                width: 85px;
+                height: 75px;
+            }
+        }
+
+        /* Desktop devices */
+        @media (min-width: 992px) {
+            .property-section {
+                width: 70%;
+            }
+
+            .property-section h2 {
+                font-size: 2rem;
+            }
+
+            .option-item img {
+                width: 85px;
+                height: 80px;
+            }
+        }
+    </style>
+    <section>
+
+
+        <div class="property-section">
+            <form class="form-inline justify-content-center mt-4 p-4 bg-white form-border">
+                <h2>Add Your own photos</h2>
+                <div class="form-row w-100 text-center">
+
+                </div>
+            </form>
+
+            <div class="form-section">
+                <h2>Building Image</h2>
+                <span>(optional)</span>
+
+                <div class="form-group">
+
+                    <label for="buildingImages">Building image</label>
+                    <input type="file" id="buildingImages" name="buildingImages[]" class="form-control-file"
+                        accept="image/*" multiple required>
+
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2> Images</h2>
+                <div class="form-section">
+                    <span>(optional)</span>
+
+                    <div class="form-group">
+
+                        <label for="buildingImages">property images</label>
+
+                    </div>
+                </div>
+
+
+                <!-- Drag and Drop Image Upload -->
+                <div class="form-group">
+                    <label for="buildingImages">Upload Building Images</label>
+                    <div id="imageUploadBox" class="upload-box">
+                        <input type="file" id="buildingImages" name="buildingImages[]" class="form-control-file"
+                            accept="image/*" multiple required>
+
+                    </div>
+                    <span>You can add up to 10 photos with a minimum size of 800x600 pixels and a file size of no more
+                        than 10MB, in JPG, JPEG, or PNG format.</span>
+                </div>
+
+                <!-- Video Upload -->
+                <div class="form-group">
+                    <label for="buildingVideo">Video</label>
+                    <span>(link)</span>
+                    <div class="small-upload-box">
+                        <input type="file" id="buildingVideo" name="buildingVideo[]" class="form-control-file"
+                            accept="video/*" multiple required>
+                    </div>
+                </div>
+
+                <!-- 360 Reality Upload -->
+                <div class="form-group">
+                    <label for="building360">360 Reality</label>
+                    <span>(link)</span>
+                    <div class="small-upload-box">
+                        <input type="file" id="building360" name="building360[]" class="form-control-file"
+                            accept="image/*" multiple required>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-section">
+                <h2>Upload Floor Plans</h2>
+                <span>(optional)</span>
+
+                <div class="form-group">
+
+                    <label for="buildingImages">Floor plans</label>
+                    <input type="file" id="buildingImages" name="buildingImages[]" class="form-control-file"
+                        accept="image/*" multiple required>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+    <section>
+        <div class="property-section">
+
+            <h2>Delaration</h2>
+            <hr>
+            <div class="form-section">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="delaration[]" id="delaration" value="true">
+                    <label class="form-check-label" for="delaration">I declare all the informations that I have
+                        submitted is correct & I agree Terms and condition</label>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <a href="listinginfo.html">
+                    <button type="previous" class="btn btn-danger"> Previous </button></a>
+                <tr>
+                    <td> </td>
+                </tr>
+            </div>
+            <form id="myForm">
+                <!-- Your form fields go here -->
+                <button type="submit" class="btn btn-danger">Continue >></button>
+            </form>
+
+            <!-- Modal -->
+            <div class="modal fade" id="submissionModal" tabindex="-1" aria-labelledby="submissionModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="submissionModalLabel">Process Completed</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Your Propery is posted.
+                            <br>
+                            Thank you for connecting with us.
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#EA3323">
+                                <path
+                                    d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" />
+                            </svg>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        function handleImageOptionChange(radio) {
+            var uploadSection = document.getElementById('uploadSection');
+            if (radio.value === "addYours") {
+                uploadSection.style.display = 'block';
+            } else {
+                uploadSection.style.display = 'none';
+            }
+        }
+    </script>
+    <script>
+        function handleImageOptionChange(radio) {
+            const propertySections = document.querySelectorAll('.property-section .option-item');
+
+            propertySections.forEach(section => {
+                section.classList.remove('selected');
+            });
+
+            radio.parentElement.classList.add('selected');
+        }
+
+    </script>
+
+
+    <br>
+
+
+
+
+
+
+    <br>
+
+
+
+
+
+    <!-- footer -->
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            var myModal = new bootstrap.Modal(document.getElementById('submissionModal'), {});
+            myModal.show();
+        });
+    </script>
+
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

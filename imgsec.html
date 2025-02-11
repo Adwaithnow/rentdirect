@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Direct</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="bg-dark text-white">
+        <nav class="navbar navbar-expand-lg py-2 navbar-dark navbar-bg-dark ">
+            <div class="container">
+                <a class="navbar-brand" href="index.php">
+                    <img src="assets/images/logo.png" alt="Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="rent.html">Rent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="findagent.html">Find Agent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="auth-buttons ml-lg-2 mt-2 mt-lg-0">
+                        <a href="login.html" class="btn btn-outline-light rounded-0 mr-2 ">Login Now</a>
+                        <a class="btn btn-danger rounded-0">Post Property</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <section>
+
+    </section>
+
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .box {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            width: 150px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+
+        .counter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+
+        span {
+            width: 30px;
+            text-align: center;
+        }
+    </style>
+
+
+
+    <style>
+        .property-section {
+            background-color: #edf2f6;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .property-section h2 {
+            color: #e63946;
+        }
+
+        .option-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .option-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Space between image and text */
+            cursor: pointer;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 150px;
+            /* Fixed width for consistency */
+            box-sizing: border-box;
+        }
+
+        .option-item img {
+            width: 50px;
+            /* Adjust image size as needed */
+            height: 50px;
+            object-fit: cover;
+        }
+
+        .option-item span {
+            flex: 1;
+            /* Allow text to take up available space */
+            font-size: 14px;
+            color: #333;
+            /* Default text color */
+            text-align: left;
+            /* Align text to the left */
+        }
+
+        .option-item input[type="checkbox"] {
+            margin-left: auto;
+            /* Align checkbox to the right */
+            cursor: pointer;
+            accent-color: blue;
+            /* Modern style for the checkbox */
+        }
+
+        .option-item:hover {
+            border-color: blue;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-item input[type="checkbox"]:checked+img {
+            border: 2px solid blue;
+        }
+
+        .option-item input[type="checkbox"]:checked+span {
+            font-weight: bold;
+            color: blue;
+        }
+
+
+
+        .section-line {
+            border: 1px solid #e63946;
+            width: 80%;
+            margin: 10px auto;
+        }
+
+        /* Mobile devices */
+        @media (max-width: 575.98px) {
+            .property-section {
+                width: 90%;
+            }
+
+            .property-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .option-item img {
+                width: 70px;
+                height: 60px;
+            }
+        }
+
+        /* Tablet devices */
+        @media (min-width: 576px) and (max-width: 991.98px) {
+            .property-section {
+                width: 80%;
+            }
+
+            .property-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .option-item img {
+                width: 85px;
+                height: 75px;
+            }
+        }
+
+        /* Desktop devices */
+        @media (min-width: 992px) {
+            .property-section {
+                width: 70%;
+            }
+
+            .property-section h2 {
+                font-size: 2rem;
+            }
+
+            .option-item img {
+                width: 85px;
+                height: 80px;
+            }
+        }
+    </style>
+    <section>
+        <div class="property-section">
+            <label class="option-item">
+                <input type="radio" name="buildingImageOption" value="book" onchange="handleImageOptionChange(this)">
+                <h3>Book Professional Photoshoot</h3>
+                <span>(you have only 1 photo session)</span>
+            </label>
+
+            <div class="form-section">
+                <div class="form-group">
+                    <hr>
+                    <label><b>What does the professional photo session include?</b></label>
+                </div>
+                <div class="form-group mx-sm-3 mb-2 col-12">
+                    <div id="propertyTypeButtons" class="d-flex justify-content-around align-items-center flex-wrap">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-transparent p-0"
+                                onclick="selectPropertyType('Residential')">
+                                <img src="AllImages/video.png" alt="Residential"
+                                    style="width: 70px; height: 80px; margin-bottom: 8px;">
+                            </button>
+                            <br>
+                            <span>Professional Video For The Property</span>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-transparent p-0"
+                                onclick="selectPropertyType('Commercial')">
+                                <img src="AllImages/360.png" alt="Commercial"
+                                    style="width: 70px; height: 80px; margin-bottom: 8px;">
+                            </button>
+                            <br>
+                            <span>Virtual Reality (360)</span>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-transparent p-0"
+                                onclick="selectPropertyType('Others')">
+                                <img src="AllImages/cam.png" alt="Other"
+                                    style="width: 70px; height: 80px; margin-bottom: 8px;">
+                            </button>
+                            <br>
+                            <span>Professional Photography</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+
+    <script>
+        function handleImageOptionChange(radio) {
+            var uploadSection = document.getElementById('uploadSection');
+            if (radio.value === "addYours") {
+                uploadSection.style.display = 'block';
+            } else {
+                uploadSection.style.display = 'none';
+            }
+        }
+    </script>
+    <script>
+        function handleImageOptionChange(radio) {
+            const propertySections = document.querySelectorAll('.property-section .option-item');
+
+            propertySections.forEach(section => {
+                section.classList.remove('selected');
+            });
+
+            radio.parentElement.classList.add('selected');
+        }
+
+    </script>
+
+
+
+
+
+
+    <br>
+
+
+
+
+
+    <style>
+        .property-section {
+            background-color: #edf2f6;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .property-section h2 {
+            color: #e63946;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            /* Space between checkboxes */
+        }
+
+        .form-check {
+            flex: 1 1 auto;
+            max-width: 800px;
+            /* Fixed width for the checkboxes */
+        }
+
+        .box-content {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            width: 300px;
+            /* Fixed width for the box */
+            box-sizing: border-box;
+        }
+
+        .form-check-input {
+            /* margin-left: 250px; */
+            /* Space between checkbox and image */
+            cursor: pointer;
+        }
+
+        .box-image {
+            width: 25px;
+            /* Small image size */
+            height: 25px;
+            object-fit: cover;
+            margin-right: 10px;
+            /* Space between image and text */
+        }
+
+        .box-text {
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+            /* Text color */
+            text-align: left;
+            /* Align text to the left */
+        }
+
+        /* Hover effect for the checkbox box */
+        .form-check:hover .box-content {
+            border-color: blue;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-section .option-item {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .property-section .option-item.selected h3 {
+            color: red;
+        }
+
+        .property-section .option-item input[type="radio"] {
+            display: none;
+        }
+
+        .upload-box {
+            border: 2px dashed #cccccc;
+            width: 95%;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            margin-bottom: 10px;
+            position: relative;
+            text-align: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .upload-text {
+            font-size: 16px;
+            color: #777;
+            white-space: nowrap;
+            /* Ensures the text stays on one line */
+            overflow: hidden;
+            /* Prevents overflow from expanding the box */
+            text-overflow: ellipsis;
+            /* Adds ellipsis (...) if text overflows */
+        }
+
+
+        .small-upload-box {
+            border: 2px dashed #cccccc;
+            width: 95%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .small-upload-box input {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+
+        /* Media query for responsiveness */
+        @media (max-width: 768px) {
+            .box-content {
+                width: 100%;
+                /* Full-width on smaller screens */
+            }
+
+            .box-image {
+                width: 8px;
+                /* Smaller images on mobile */
+                height: 8px;
+            }
+
+            .box-text {
+                font-size: 12px;
+                /* Smaller text on mobile */
+            }
+        }
+
+
+        .option-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .option-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 900px;
+        }
+
+        .option-item:hover {
+            border-color: blue;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-item img {
+            width: 85px;
+            height: 70px;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+        .option-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .option-item input[type="checkbox"]:checked+img {
+            border: 2px solid blue;
+        }
+
+        .option-item input[type="checkbox"]:checked+img+span {
+            font-weight: bold;
+            color: blue;
+        }
+
+        .section-line {
+            border: 1px solid #e63946;
+            width: 80%;
+            margin: 10px auto;
+        }
+
+        /* Mobile devices */
+        @media (max-width: 575.98px) {
+            .property-section {
+                width: 90%;
+            }
+
+            .property-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .option-item img {
+                width: 70px;
+                height: 60px;
+            }
+        }
+
+        /* Tablet devices */
+        @media (min-width: 576px) and (max-width: 991.98px) {
+            .property-section {
+                width: 80%;
+            }
+
+            .property-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .option-item img {
+                width: 85px;
+                height: 75px;
+            }
+        }
+
+        /* Desktop devices */
+        @media (min-width: 992px) {
+            .property-section {
+                width: 70%;
+            }
+
+            .property-section h2 {
+                font-size: 2rem;
+            }
+
+            .option-item img {
+                width: 85px;
+                height: 80px;
+            }
+        }
+    </style>
+
+
+
+    <br>
+
+
+
+
+
+    <!-- footer -->
+
+
+
+
+
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

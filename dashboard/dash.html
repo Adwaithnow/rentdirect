@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Direct</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+
+</head>
+
+<body>
+
+    <header class="bg-dark text-white fixed-top">
+        <nav class="navbar navbar-expand-lg py-2 navbar-dark navbar-bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../index.php">
+                    <img src="../assets/images/logo.png" alt="Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../index.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../rent.html">Rent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../findagent.html">Find Agent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../contact.html">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="auth-buttons ml-lg-2 mt-2 mt-lg-0">
+                        <a class="btn btn-danger rounded-0">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container my-5 property-form">
+        <form enctype="multipart/form-data" method="post" action="upload_handler.php">
+            <div class="form-section">
+                <h2>Property Information</h2>
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label for="propertyName">Property Name</label>
+                            <input type="text" id="propertyName" name="propertyName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyArea">Area</label>
+                            <input type="text" id="propertyArea" name="propertyArea" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="block">Block</label>
+                            <input type="text" id="block" name="block" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyrefno">Property Ref No</label>
+                            <input type="text" id="propertyrefno" name="propertyrefno" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label for="pacinumber">PACI Number</label>
+                            <input type="text" id="pacinumber" name="pacinumber" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="street">Street</label>
+                            <input type="text" id="street" name="street" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jeddah">Jeddah</label>
+                            <select id="jeddah" name="jeddah" class="form-control" required>
+                                <option value="Ahmadi">Ahmadi</option>
+                                <option value="Assimah">Assimah</option>
+                                <option value="Farwaniya">Farwaniya</option>
+                                <option value="Jahra">Jahra</option>
+                                <option value="Hawali">Hawali</option>
+                                <option value="Mubarak Al Kabir">Mubarak Al Kabir</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="building-no">Building Number</label>
+                            <input type="text" id="building-no" name="building-no" class="form-control" required>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="plot">Plot</label>
+                    <input type="text" id="plot" name="plot" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="propertyDescription">Description</label>
+                    <textarea id="propertyDescription" name="propertyDescription" class="form-control" rows="4"
+                        required></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Owner/Agent Details & Listing Information</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Owner/Agent Details</h3>
+                        <div class="form-group">
+                            <label for="ownerName">Name</label>
+                            <input type="text" id="ownerName" name="ownerName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ownerNumber">Phone Number</label>
+                            <input type="tel" id="ownerNumber" name="ownerNumber" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ownerEmail">Email ID</label>
+                            <input type="email" id="ownerEmail" name="ownerEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ownerCivilId">Civil ID</label>
+                            <input type="text" id="ownerCivilId" name="ownerCivilId" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="agentImage">Agent Image</label>
+                            <input type="file" id="agentImage" name="agentImage" class="form-control-file"
+                                accept="image/*" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h3>Listing Information</h3>
+                        <div class="form-group">
+                            <label for="bedrooms">Number of Bedrooms</label>
+                            <input type="number" id="bedrooms" name="bedrooms" class="form-control" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bathrooms">Number of Bathrooms</label>
+                            <input type="number" id="bathrooms" name="bathrooms" class="form-control" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertySize">Property Size (sq ft)</label>
+                            <input type="number" id="propertySize" name="propertySize" class="form-control" min="0"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rent-amount">Rent Amount</label>
+                            <input type="text" id="rent-amount" name="rent-amount" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Furnished">Furnished / Unfurnished</label>
+                            <select id="Furnished" name="Furnished" class="form-control" required>
+                                <option value="Furnished">Furnished</option>
+                                <option value="unfurnished">Unfurnished</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Amenities</h2>
+                <div class="form-row" id="initial-amenities-container">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenities[]" id="amenity1" value="gym">
+                        <label class="form-check-label" for="amenity1">Gym</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenities[]" id="amenity2"
+                            value="swimmingPool">
+                        <label class="form-check-label" for="amenity2">Swimming Pool</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenities[]" id="amenity3"
+                            value="security">
+                        <label class="form-check-label" for="amenity3">Security</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenities[]" id="amenity4" value="cctv">
+                        <label class="form-check-label" for="amenity4">CCTV</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenities[]" id="amenity5"
+                            value="internet">
+                        <label class="form-check-label" for="amenity5">Internet</label>
+                    </div>
+                </div>
+                <div class="form-row" id="new-amenities-container">
+                    <!-- New amenities will be added here -->
+                </div>
+                <input type="text" id="new-amenity-name" placeholder="New Amenity Name" class="form-control" />
+                <button type="button" class="btn btn-primary" id="add-amenity-btn">Add More</button>
+            </div>
+
+            <div class="form-section">
+                <h2>Building Images</h2>
+                <div class="form-group">
+                    <label for="buildingImages">Upload Building Images</label>
+                    <input type="file" id="buildingImages" name="buildingImages[]" class="form-control-file"
+                        accept="image/*" multiple required>
+                    <input type="file" id="buildingImages" name="buildingImages[]" class="form-control-file"
+                        accept="image/*" multiple required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <style>
+        /* Ensure the form section has the same styling */
+        .form-section {
+            margin-bottom: 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ensure consistent styling for headings */
+        .form-section h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        /* Ensure checkboxes and labels are properly styled */
+        .form-check {
+            margin-bottom: 10px;
+        }
+
+        /* Ensure the grid layout for amenities is consistent */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        /* Style the input field for new amenities */
+        #new-amenity-name {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Style the button for adding amenities */
+        #add-amenity-btn {
+            margin-top: 20px;
+        }
+
+        /* Ensure form row sections are side by side */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col-md-6 {
+            flex: 1;
+            padding: 15px;
+        }
+
+        /* Extra small devices (phones, less than 576px) */
+        @media (max-width: 575.98px) {
+            .navbar .navbar-brand img {
+                width: 80px;
+            }
+
+            .card {
+                margin-bottom: 20px;
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
+
+            .footer .col-md-3 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Small devices (landscape phones, 576px and up) */
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            .navbar .navbar-brand img {
+                width: 90px;
+            }
+
+            .card-title {
+                font-size: 1.3rem;
+            }
+
+            .footer .col-md-3 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Medium devices (tablets, 768px and up) */
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .navbar .navbar-brand img {
+                width: 100px;
+            }
+
+            .card-title {
+                font-size: 1.4rem;
+            }
+
+            .footer .col-md-3 {
+                text-align: left;
+                margin-bottom: 0;
+            }
+        }
+
+        /* Large devices (desktops, 992px and up) */
+        @media (min-width: 992px) {
+            .navbar .navbar-brand img {
+                width: 120px;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+
+            .footer .col-md-3 {
+                text-align: left;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+    <script>
+        document.getElementById('add-amenity-btn').addEventListener('click', function () {
+            const amenitiesContainer = document.getElementById('new-amenities-container');
+            const newAmenityName = document.getElementById('new-amenity-name').value;
+
+            if (newAmenityName.trim() !== '') {
+                const newAmenity = document.createElement('div');
+                newAmenity.classList.add('form-check');
+
+                // Generate unique ID for new amenity
+                const nextId = amenitiesContainer.getElementsByClassName('form-check').length + 6;
+
+                newAmenity.innerHTML = `
+                <input class="form-check-input" type="checkbox" name="amenities[]" id="amenity${nextId}" value="${newAmenityName}">
+                <label class="form-check-label" for="amenity${nextId}">${newAmenityName}</label>
+            `;
+
+                // Append the new amenity checkbox
+                amenitiesContainer.appendChild(newAmenity);
+
+                // Clear the input field
+                document.getElementById('new-amenity-name').value = '';
+            } else {
+                alert('Please enter a name for the new amenity.');
+            }
+        });
+    </script>
+
+    <!-- footer -->
+
+    <footer class="text-white py-5">
+        <div class="container pt-4">
+            <div class="row">
+                <div class="col-md-3 col-lg-3">
+                    <a href="/">
+                        <img src="../assets/images/logo.png" alt="Logo" width="100">
+                    </a>
+                    <h6 class="mt-3">Social Media Links</h6>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.php">About Us</a></li>
+                        <li><a href="rent.html">Rent</a></li>
+                        <li><a href="findagent.html">Find Agent</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <h4>Contact</h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#5f6368">
+                        <path
+                            d="M480-301q99-80 149.5-154T680-594q0-90-56-148t-144-58q-88 0-144 58t-56 148q0 65 50.5 139T480-301Zm0 101Q339-304 269.5-402T200-594q0-125 78-205.5T480-880q124 0 202 80.5T760-594q0 94-69.5 192T480-200Zm0-320q33 0 56.5-23.5T560-600q0-33-23.5-56.5T480-680q-33 0-56.5 23.5T400-600q0 33 23.5 56.5T480-520ZM200-80v-80h560v80H200Zm280-520Z" />
+                    </svg>
+                    <p> AL BLAJAT STREET </p>
+                    <p> SALMIYA - KUWAIT</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#5f6368">
+                        <path
+                            d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
+                    </svg>
+                    <a href="mailto:info@rentdirect-q8.com">info@rentdirect-q8.com</a></p>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#5f6368">
+                        <path
+                            d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z" />
+                    </svg>
+                    <p> +965 92276201</p>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <h6>Newsletter</h6>
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <button type="submit" class="btn btn-danger">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="text-center py-3">
+            &copy; 2024 Rent Direct. All Rights Reserved.
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

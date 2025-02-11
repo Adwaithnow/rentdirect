@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider with Thumbnails</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Basic styling */
+.slider {
+    display: flex;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 1000px;
+    overflow: hidden;
+}
+
+.slider-main {
+    position: relative;
+    flex: 1;
+}
+
+.slider-main img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.slider-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.thumbnail-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.thumbnail-item {
+    cursor: pointer;
+}
+
+.thumbnail {
+    width: 80px;
+    height: auto;
+    border: 2px solid transparent;
+}
+
+.thumbnail:hover {
+    border-color: #007bff;
+}
+
+/* Media Queries */
+
+/* Tablets and small screens */
+@media (max-width: 768px) {
+    .slider {
+        flex-direction: column;
+    }
+
+    .thumbnail-gallery {
+        flex-direction: row;
+        overflow-x: auto;
+        margin-left: 0;
+    }
+
+    .thumbnail {
+        width: 60px;
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+    .slider-control {
+        padding: 5px;
+    }
+
+    .thumbnail {
+        width: 50px;
+    }
+}
+
+</style>
+<body>
+    <div class="slider">
+        <div class="slider-main">
+            <img id="main-image" src="assets/images/1.jpg" alt="Main Image">
+            <button class="slider-control prev" onclick="prevImage()">&#10094;</button>
+            <button class="slider-control next" onclick="nextImage()">&#10095;</button>
+        </div>
+        <div class="thumbnail-gallery">
+            <div class="thumbnail-item">
+                <img src="assets/images/1.jpg" alt="Thumbnail 1" class="thumbnail" onclick="changeImage('assets/images/1.jpg')">
+            </div>
+            <div class="thumbnail-item">
+                <img src="assets/images/2.jpg" alt="Thumbnail 2" class="thumbnail" onclick="changeImage('assets/images/2.jpg')">
+            </div>
+            <!-- Add more thumbnails here -->
+        </div>
+    </div>
+
+   <script>
+    console.log("Script loaded"); // Debugging statement
+
+const images = [
+    'assets/images/1.jpg',
+    'assets/images/2.jpg',
+    // Add more image paths here
+];
+
+let currentIndex = 0;
+
+function changeImage(src) {
+    console.log("Changing image to:", src); // Debugging statement
+    document.getElementById('main-image').src = src;
+    currentIndex = images.indexOf(src);
+}
+
+function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById('main-image').src = images[currentIndex];
+}
+
+function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    document.getElementById('main-image').src = images[currentIndex];
+}
+
+   </script>
+</body>
+</html>
+
+

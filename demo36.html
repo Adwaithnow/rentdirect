@@ -1,0 +1,249 @@
+<html>
+    <head>
+        <title>demo8</title>
+    </head>
+    <body>
+        <!-- Property Listing Section -->
+        <section class="property-section">
+            <form class="form-inline justify-content-center mt-4 p-4 bg-white form-border">
+                <div class="form-row w-100 text-center">
+                    <h2>Provide the details of the property you wish to list</h2>
+                </div>
+            </form>
+            <div class="form-group mx-sm-3 mb-2 col-12 text-center">
+                <br>
+                <div id="propertyTypeButtons" class="btn-group" role="group">
+                    <div class="option-row justify-content-center">
+                        <label class="option-item">
+                            <input type="radio" name="option" value="1">
+                            <img src="assets/icons/rent2.png" alt="Rent">
+                            <span>Rent</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="option" value="2">
+                            <img src="assets/icons/sale.png" alt="Sell">
+                            <span>Sale</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="option" value="3">
+                            <img src="assets/icons/holiday2.png" alt="Holiday">
+                            <span>Holiday</span>
+                        </label>
+                    </div>
+                </div>
+                <hr class="section-line">
+                <br>
+            </div>
+            
+            <div class="form-group mx-sm-3 mb-2 col-12 text-center">
+                <div id="propertyTypeButtons" class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-primary mx-2" onclick="selectPropertyType('Residential')">
+                        <img src="assets/icons/residential2.png" alt="Residential" style="width: 80px; height: 100px; margin-right: 8px; padding: 15px;">
+                        Residential
+                    </button>
+                    <button type="button" class="btn btn-outline-primary mx-2" onclick="selectPropertyType('Commercial')">
+                        <img src="assets/icons/commercial2.png" alt="Commercial" style="width: 80px; height: 100px; margin-right: 8px; padding: 15px;">
+                        Commercial
+                    </button>
+                    <button type="button" class="btn btn-outline-primary mx-2" onclick="selectPropertyType('Others')">
+                        <img src="assets/icons/others.png" alt="Other" style="width: 70px; height: 100px; margin-right: 8px; padding: 15px;">
+                        Other
+                    </button>
+                </div>
+            </div>
+            <div class="form-row w-100" id="propertySubTypeContainer" style="display: none;">
+                <h4 id="subCategoryHeading" class="col-12 mt-4"></h4>
+                <div class="form-group mx-sm-3 mb-2 col-12 text-center">
+                    <div id="propertySubTypeButtons" class="btn-group" role="group">
+                        <!-- Subtype buttons will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        
+            <input type="hidden" id="propertyType" value="">
+            <input type="hidden" id="propertySubType" value="">
+        
+            <script>
+                const propertySubTypes = {
+                    Residential: [
+                        { name: "Apartment", icon: "assets/icons/office.png" },
+                        { name: "Villa", icon: "assets/icons/villa.png" },
+                        { name: "Floor Villa", icon: "assets/icons/villaa.png" },
+                        { name: "Independent House", icon: "assets/icons/modern-house.png" },
+                        { name: "Studio", icon: "assets/icons/room.png" },
+                        { name: "Mulhaq", icon: "assets/icons/building.png" }
+                    ],
+                    Commercial: [
+                        { name: "Office Space", icon: "assets/icons/work.png" },
+                        { name: "Shop", icon: "assets/icons/store.png" },
+                        { name: "Warehouse", icon: "assets/icons/warehouse.png" },
+                        { name: "Garage", icon: "assets/icons/garage.png" },
+                        { name: "Cloud Kitchen", icon: "assets/icons/kitchen-set.png" }
+                    ],
+                    Others: [
+                        { name: "Farm", icon: "assets/icons/farm.png" },
+                        { name: "Chalet", icon: "assets/icons/chalet.png" }
+                    ]
+                };
+        
+                function selectPropertyType(type) {
+                    document.getElementById("propertyType").value = type;
+                    updatePropertySubType();
+        
+                    const buttons = document.querySelectorAll("#propertyTypeButtons .btn");
+                    buttons.forEach(button => {
+                        button.classList.remove("active");
+                    });
+                    event.target.classList.add("active");
+        
+                    document.getElementById("propertySubTypeContainer").style.display = 'block';
+                }
+        
+                function selectPropertySubType(subType, element) {
+                    document.getElementById("propertySubType").value = subType;
+        
+                    const buttons = document.querySelectorAll("#propertySubTypeButtons .btn");
+                    buttons.forEach(button => {
+                        button.classList.remove("active");
+                    });
+                    element.classList.add("active");
+                }
+        
+                function updatePropertySubType() {
+                    const propertyType = document.getElementById("propertyType").value;
+                    const propertySubTypeButtons = document.getElementById("propertySubTypeButtons");
+                    const subCategoryHeading = document.getElementById("subCategoryHeading");
+        
+                    propertySubTypeButtons.innerHTML = '';
+                    subCategoryHeading.textContent = '';
+        
+                    if (propertyType) {
+                        subCategoryHeading.textContent = `Choose a subcategory for ${propertyType}:`;
+        
+                        propertySubTypes[propertyType].forEach(subType => {
+                            const button = document.createElement("button");
+                            button.type = "button";
+                            button.className = "btn btn-outline-primary mx-2 my-2";
+                            button.onclick = function () {
+                                selectPropertySubType(subType.name, button);
+                            };
+        
+                            const img = document.createElement("img");
+                            img.src = subType.icon;
+                            img.alt = subType.name;
+                            img.style.width = "60px";
+                            img.style.height = "80px";
+                            img.style.marginRight = "8px";
+        
+                            button.appendChild(img);
+                            button.appendChild(document.createTextNode(subType.name));
+        
+                            propertySubTypeButtons.appendChild(button);
+                        });
+                    }
+                }
+            </script>
+        </section>
+        <br>
+        
+        <section class="property-section">
+            <form class="form-inline justify-content-center mt-4 p-4 bg-white form-border">
+                <div class="form-row w-100 text-center">
+                    <h2>Location</h2>
+                </div>
+            </form>
+            <br>
+            <h2>Property Information</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="governorate">Governorate</label>
+                            <select id="location" class="form-control" onchange="updateSubLocation()">
+                                <option value="">Select Governorate</option>
+                                <option value="Ahmadi">Ahmadi</option>
+                                <option value="Assimah">Assimah</option>
+                                <option value="Farwaniya">Farwaniya</option>
+                                <option value="Jahra">Jahra</option>
+                                <option value="Hawali">Hawali</option>
+                                <option value="Mubarak Al Kabir">Mubarak Al Kabir</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="block">Block</label>
+                            <input type="text" id="block" name="block" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="building-no">Building Number</label>
+                            <input type="text" id="building-no" name="building-no" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="area">Area</label>
+                        <select id="subLocation" class="form-control">
+                            <option value="">Select Area</option>
+                        </select>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="floor">Floor</label>
+                        <input type="text" id="floor" name="floor" class="form-control">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="unit-no">Unit Number</label>
+                        <input type="text" id="unit-no" name="unit-no" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+        <section class="property-title-section">
+            <div class="container text-center mt-4">
+                <h3>Property Title:</h3>
+                <div id="propertyTitle" class="alert alert-info" style="display: none;">
+                    <!-- The title will be inserted here -->
+                </div>
+            </div>
+        </section>
+        <script>
+            // Function to update the property title based on selections
+function updatePropertyTitle() {
+    const type = document.getElementById("propertyType").value;
+    const subType = document.getElementById("propertySubType").value;
+    const location = document.getElementById("location").value;
+
+    let title = '';
+
+    if (type && subType && location) {
+        title = `For ${type} - ${subType} in ${location}`;
+    } else if (type && location) {
+        title = `For ${type} in ${location}`;
+    } else if (type) {
+        title = `For ${type}`;
+    } else {
+        title = 'Please select options to generate the title';
+    }
+
+    const titleElement = document.getElementById("propertyTitle");
+    titleElement.textContent = title;
+    titleElement.style.display = title ? 'block' : 'none';
+}
+
+// Call this function whenever an option is selected or changed
+document.querySelectorAll('input[name="option"], #propertyTypeButtons button').forEach(button => {
+    button.addEventListener('change', updatePropertyTitle);
+});
+
+document.querySelectorAll('#location, #block, #building-no, #floor, #unit-no').forEach(input => {
+    input.addEventListener('input', updatePropertyTitle);
+});
+
+        </script>
+
+    </body>
+</html>

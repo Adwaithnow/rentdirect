@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>backend</title>
+    </head>
+    <body>
+        <section class="hero text-white text-center d-flex align-items-center"
+    style="background: url('AllImages/assets/images/hsec2.jpg') no-repeat center center/cover; height: 400px;">
+    <div class="container">
+        <h2>Unlock Your Dream Property Now</h2>
+        <form id="propertySearchForm" class="form-inline justify-content-center mt-4 p-4 bg-white form-border">
+            <div class="form-group mx-sm-3 mb-2">
+                <select id="location" class="form-control" onchange="updateSubLocation()">
+                    <option value="">Select Property Location</option>
+                    <option value="Ahmadi">Ahmadi</option>
+                    <option value="Assimah">Assimah</option>
+                    <option value="Farwaniya">Farwaniya</option>
+                    <option value="Jahra">Jahra</option>
+                    <option value="Hawali">Hawali</option>
+                    <option value="Mubarak Al Kabir">Mubarak Al Kabir</option>
+                </select>
+            </div>
+
+            <div class="form-group mx-sm-3 mb-2">
+                <select id="subLocation" class="form-control">
+                    <option>Select City Location</option>
+                </select>
+            </div>
+
+            <div class="form-group mx-sm-3 mb-2">
+                <select id="propertyType" class="form-control" onchange="updatePropertySubType()">
+                    <option value="">Select Property Type</option>
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
+                </select>
+            </div>
+
+            <div class="form-group mx-sm-3 mb-2">
+                <select id="propertySubType" class="form-control">
+                    <option value="">Select Sub Type</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-danger mb-2">Search</button>
+        </form>
+    </div>
+</section>
+<script>
+    // Handle the form submission
+    document.getElementById('propertySearchForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get the values from the form
+        const location = document.getElementById('location').value;
+        const subLocation = document.getElementById('subLocation').value;
+        const propertyType = document.getElementById('propertyType').value;
+        const propertySubType = document.getElementById('propertySubType').value;
+
+        // Perform your search logic here
+        console.log('Location:', location);
+        console.log('Sub Location:', subLocation);
+        console.log('Property Type:', propertyType);
+        console.log('Property Sub Type:', propertySubType);
+
+        // You can now do something with these values, like:
+        // - Redirect to a search results page
+        // - Perform an API call to search properties
+        // For example, redirecting the user to a search results page:
+        if (location && propertyType) {
+            const queryString = `?location=${location}&subLocation=${subLocation}&propertyType=${propertyType}&propertySubType=${propertySubType}`;
+            window.location.href = `search-results.html${queryString}`;
+        } else {
+            alert('Please select at least a location and property type');
+        }
+    });
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Rent Includes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Monthly Rent Includes</h2>
+
+        <!-- Container for dynamically added rent includes -->
+        <div class="form-row" id="monthly-includes-container">
+            <!-- New rent includes will be added here -->
+        </div>
+
+        <!-- Input field to add new rent includes -->
+        <input type="text" id="new-includes-name" placeholder="New Rent Includes" class="form-control" />
+
+        <!-- Button to add more items -->
+        <button type="button" class="btn btn-primary" id="add-includes-btn">Add Monthly Rent Includes</button>
+    </div>
+
+    <script src="script.js"></script>
+    <style>
+        /* Basic styling for the container and form elements */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for the dynamically added form check items */
+.form-check {
+    margin-top: 10px;
+}
+
+.form-check-label {
+    margin-left: 10px;
+}
+
+    </style>
+    <script>
+        document.getElementById('add-includes-btn').addEventListener('click', function () {
+    const includesContainer = document.getElementById('monthly-includes-container');
+    const newIncludesName = document.getElementById('new-includes-name').value.trim(); // Trim the input to remove extra spaces
+
+    if (newIncludesName !== '') {
+        // Create a new div for the new rent includes checkbox
+        const newIncludes = document.createElement('div');
+        newIncludes.classList.add('form-check');
+
+        // Generate a unique ID for each new rent includes checkbox
+        const nextId = includesContainer.getElementsByClassName('form-check').length + 1;
+
+        // Create the inner HTML with the checkbox and label
+        newIncludes.innerHTML = `
+            <input class="form-check-input" type="checkbox" name="rent_includes[]" id="includes${nextId}" value="${newIncludesName}">
+            <label class="form-check-label" for="includes${nextId}">${newIncludesName}</label>
+        `;
+
+        // Append the new checkbox and label to the container
+        includesContainer.appendChild(newIncludes);
+
+        // Clear the input field after adding the item
+        document.getElementById('new-includes-name').value = '';
+    } else {
+        alert('Please enter a name for the new rent includes item.');
+    }
+});
+
+    </script>
+</body>
+</html>

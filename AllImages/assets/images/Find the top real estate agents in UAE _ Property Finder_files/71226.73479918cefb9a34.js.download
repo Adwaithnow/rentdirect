@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[71226],{71226:function(e,s,t){t.r(s),t.d(s,{HeadTrackersAwsWafTemplate:function(){return c}});var a=t(52322);t(2784);let c=()=>(0,a.jsx)("script",{id:"aws-waf-script",type:"text/javascript",src:"".concat("https://0c949654e9fd.ap-southeast-1.sdk.awswaf.com/0c949654e9fd/28767309d94e/challenge.js"),defer:!0})}}]);

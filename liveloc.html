@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>
+            demo
+        </title>
+    </head>
+    <body>
+        <section>
+            <div class="map-location-box">
+                <h3>Locate on Google Maps</h3>
+                <button class="locate-btn" onclick="openGoogleMaps()">Select Location</button>
+                <div id="selected-location" class="location-display-box">
+                    <!-- Selected location will appear here -->
+                </div>
+            </div>
+            
+        </section>
+        <script>
+            function openGoogleMaps() {
+    // Open Google Maps in a new window
+    let mapWindow = window.open("https://www.google.com/maps", "_blank");
+
+    // This is a placeholder for the selected location
+    // You would normally get this data from your map interaction
+    let selectedLocation = "25.276987, 55.296249"; // Example: Latitude, Longitude of Dubai
+
+    // Simulating a delay as if the user selected a location
+    setTimeout(() => {
+        // Close the map window (optional)
+        mapWindow.close();
+
+        // Display the selected location in the box
+        document.getElementById("selected-location").textContent = `Selected Location: ${selectedLocation}`;
+    }, 5000); // Simulate a delay of 5 seconds
+}
+
+        </script>
+        <style>
+            .map-location-box {
+    width: 100%;
+    text-align: center;
+}
+
+.locate-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.location-display-box {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 15px;
+    width: 80%;
+    margin: 20px auto;
+    min-height: 50px;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+        </style>
+    </body>
+</html>

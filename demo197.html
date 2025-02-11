@@ -1,0 +1,71 @@
+<!-- New Amenities Section -->
+<div class="form-row" id="new-amenities-container">
+    <!-- Newly added amenities will appear here -->
+</div>
+
+<input type="text" id="new-amenity-name" placeholder="New Amenity Name" class="form-control" />
+<button type="button" class="btn btn-primary" id="add-amenity-btn">Add Amenity</button>
+
+<!-- New Monthly Rent Includes Section -->
+<div class="form-row" id="monthly-includes-container">
+    <!-- Newly added monthly rent items will appear here -->
+</div>
+
+<input type="text" id="new-includes-name" placeholder="New Rent Includes" class="form-control" />
+<button type="button" class="btn btn-primary" id="add-includes-btn">Add Monthly Rent Includes</button>
+
+<script>
+    // Function to add new amenities
+    document.getElementById('add-amenity-btn').addEventListener('click', function () {
+        const amenitiesContainer = document.getElementById('new-amenities-container');
+        const newAmenityName = document.getElementById('new-amenity-name').value.trim();
+
+        if (newAmenityName !== '') {
+            const newAmenity = document.createElement('div');
+            newAmenity.classList.add('form-check');
+
+            // Generate unique ID for new amenity
+            const nextId = amenitiesContainer.getElementsByClassName('form-check').length + 6;
+
+            newAmenity.innerHTML = `
+                <input class="form-check-input" type="checkbox" name="amenities[]" id="amenity${nextId}" value="${newAmenityName}">
+                <label class="form-check-label" for="amenity${nextId}">${newAmenityName}</label>
+            `;
+
+            // Append the new amenity
+            amenitiesContainer.appendChild(newAmenity);
+
+            // Clear the input field
+            document.getElementById('new-amenity-name').value = '';
+        } else {
+            alert('Please enter a name for the new amenity.');
+        }
+    });
+
+    // Function to add new items to "Monthly Rent Includes"
+    document.getElementById('add-includes-btn').addEventListener('click', function () {
+        const includesContainer = document.getElementById('monthly-includes-container');
+        const newIncludesName = document.getElementById('new-includes-name').value.trim();
+
+        if (newIncludesName !== '') {
+            const newIncludes = document.createElement('div');
+            newIncludes.classList.add('form-check');
+
+            // Generate unique ID for new rent includes
+            const nextId = includesContainer.getElementsByClassName('form-check').length + 1;
+
+            newIncludes.innerHTML = `
+                <input class="form-check-input" type="checkbox" name="rent_includes[]" id="includes${nextId}" value="${newIncludesName}">
+                <label class="form-check-label" for="includes${nextId}">${newIncludesName}</label>
+            `;
+
+            // Append the new item to the "Monthly Rent Includes" container
+            includesContainer.appendChild(newIncludes);
+
+            // Clear the input field
+            document.getElementById('new-includes-name').value = '';
+        } else {
+            alert('Please enter a name for the new rent includes item.');
+        }
+    });
+</script>
