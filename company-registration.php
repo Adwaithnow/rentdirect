@@ -110,7 +110,7 @@
                         </li>
                     </ul>
                     <div class="auth-buttons ml-lg-2 mt-2 mt-lg-0">
-                        <a href="login.html" class="btn btn-outline-light rounded-0 mr-2">Login Now</a>
+                        <a href="login.php" class="btn btn-outline-light rounded-0 mr-2">Login Now</a>
                         <a class="btn btn-danger rounded-0">Post Property</a>
                     </div>
                 </div>
@@ -130,10 +130,28 @@
                                     </div>
                                     <h6 class="h5 mb-0">Welcome!</h6>
                                     <p class="text-muted mt-2 mb-2">Enter your details to create an account</p>
-                                    <form id="companyRegistrationForm">
+
+<!-- Confirmation Message -->
+<div class="confirmation-message" style="display: none;">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Well done!</h4>
+        <p>Your registration was successful! You can now log in with your credentials.</p>
+    </div>
+</div>
+
+<!-- Error Message -->
+<div class="error-message" style="display: none;">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Oops!</h4>
+        <p class="error-text"></p>
+    </div>
+</div>
+
+<!-- Registration Form -->
+<form id="registrationForm" onsubmit="submitForm(event)">
     <div class="form-group">
         <label for="exampleInputCompanyName">Company Name</label>
-        <input type="text" class="form-control" id="exampleInputCompanyName" name="companyName">
+        <input type="text" class="form-control" id="exampleInputCompanyName" name="companyName" required>
     </div>
     <div class="form-group">
         <label for="complogo">Company Logo</label>
@@ -141,82 +159,72 @@
     </div>
     <div class="form-group">
         <label for="compregno">Company Registration No</label>
-        <input type="text" class="form-control" id="compregno" name="compregno">
+        <input type="text" class="form-control" id="compregno" name="compregno" required>
     </div>
     <div class="form-group">
         <label for="exampleInputEmail">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail" name="exampleInputEmail">
+        <input type="email" class="form-control" id="exampleInputEmail" name="exampleInputEmail" required>
     </div>
     <div class="form-group">
         <label for="exampleInputPassword">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword" name="password">
+        <input type="password" class="form-control" id="exampleInputPassword" name="password" required>
     </div>
     <div class="form-group">
         <label for="exampleInputConfirmPassword">Confirm Password</label>
-        <input type="password" class="form-control" id="exampleInputConfirmPassword" name="confirmPassword">
+        <input type="password" class="form-control" id="exampleInputConfirmPassword" name="confirmPassword" required>
     </div>
     <button type="submit" class="btn btn-danger rounded-0" id="registerBtn">Register</button>
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
-    // Prevent multi-clicks by disabling the button when clicked
-    $("#companyRegistrationForm").submit(function(e) {
-        e.preventDefault();
+    // Function to handle form submission via AJAX
+    function submitForm(event) {
+        event.preventDefault();  // Prevent the default form submission
 
-        // Validate fields before sending the AJAX request
-        let companyName = $("#exampleInputCompanyName").val();
-        let companyLogo = $("#complogo")[0].files.length;
-        let regNo = $("#compregno").val();
-        let email = $("#exampleInputEmail").val();
-        let password = $("#exampleInputPassword").val();
-        let confirmPassword = $("#exampleInputConfirmPassword").val();
+        let form = new FormData(event.target);  // Collect form data
+        let confirmationMessage = document.querySelector(".confirmation-message");
+        let errorMessage = document.querySelector(".error-message");
+        let submitButton = document.querySelector("button[type='submit']");
 
-        if (!companyName || !companyLogo || !regNo || !email || !password || !confirmPassword) {
-            alert("All fields are required!");
-            return;
-        }
+        // Disable the submit button to prevent multiple clicks
+        submitButton.disabled = true;
+        submitButton.innerText = "Submitting...";  // Optionally change button text to indicate submission
 
-        if (password !== confirmPassword) {
-            alert("Passwords do not match!");
-            return;
-        }
-
-        // Disable the submit button to prevent multi-click
-        $("#registerBtn").prop("disabled", true);
-
-        // Prepare form data (including file data)
-        let formData = new FormData(this);
-
-        // AJAX request to send data to PHP
-        $.ajax({
-            url: 'actions/registration/company_registration.php',  // PHP file to handle the registration
-            type: "POST",
-            data: formData,
-            processData: false,  // Don't process the file
-            contentType: false,  // Set content-type to false for file upload
-            success: function(response) {
-                let data = JSON.parse(response);
+        fetch('actions/registration/company_registration.php', {
+            method: 'POST',
+            body: form
+        })
+            .then(response => response.json())  // Ensure the response is JSON
+            .then(data => {
                 if (data.success) {
-                    alert("Registration successful!");
+                    // Display confirmation message on success
+                    document.querySelector("form").style.display = "none";  // Hide the form
+                    confirmationMessage.style.display = "block";  
+                    errorMessage.style.display = "none";  // Hide error message if successful
                 } else {
-                    alert(data.message);
+                    // Display error message if something went wrong
+                    errorMessage.querySelector(".error-text").textContent = data.message;
+                    errorMessage.style.display = "block";  // Show the error message
+                    confirmationMessage.style.display = "none";  // Hide confirmation message
                 }
-                // Enable the button again after the request is complete
-                $("#registerBtn").prop("disabled", false);
-            },
-            error: function() {
-                alert("There was an error processing your request.");
-                $("#registerBtn").prop("disabled", false);  // Enable button in case of error
-            }
-        });
-    });
-});
+            })
+            .catch(error => {
+                // Display error message if there's a network issue or other errors
+                errorMessage.querySelector(".error-text").textContent = "An error occurred: " + error.message;
+                errorMessage.style.display = "block";  // Show error message
+                confirmationMessage.style.display = "none";  // Hide confirmation message
+            })
+            .finally(() => {
+                // Re-enable the button after the request completes (in case of errors, etc.)
+                submitButton.disabled = false;
+                submitButton.innerText = "Register";  // Reset button text
+            });
+    }
 </script>
 
                                     <p class="text-muted text-center mt-3 mb-0">Already have an account? <a
-                                            href="login.html" class="text-primary ml-1">Login</a></p>
+                                            href="login.php" class="text-primary ml-1">Login</a></p>
                                 </div>
                             </div>
                             <div class="col-lg-6 d-none d-lg-inline-block">

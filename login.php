@@ -156,7 +156,7 @@
                         </li>
                     </ul>
                     <div class="auth-buttons ml-lg-2 mt-2 mt-lg-0">
-                        <a href="login.html" class="btn btn-outline-light rounded-0 mr-2 ">Login Now</a>
+                        <a href="login.php" class="btn btn-outline-light rounded-0 mr-2 ">Login Now</a>
                         <a href="postproperty.html" class="btn btn-danger rounded-0">Post Property</a>
                     </div>
                 </div>
@@ -178,30 +178,100 @@
                                     <h6 class="h5 mb-0">Welcome back!</h6>
                                     <p class="text-muted mt-2 mb-2">Enter your email address and password </p>
 
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1">
-                                        </div>
-                                        <div class="form-group mb-2">
-                                            <label for="exampleInputPassword1">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1">
-                                        </div>
-                                        <a type="submit" href="dashboard/dashboard.html"
-                                            class="btn btn-danger rounded-0">Login</a>
-                                        <a href="forgot.html" class="forgot-link float-right text-primary">Forgot
-                                            password?</a>
+<!-- Login Form -->
+<form id="loginForm" onsubmit="submitLoginForm(event)">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" name="email" required>
+    </div>
+    <div class="form-group mb-2">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-danger rounded-0" id="loginBtn">Login</button>
+    <a href="forgot.html" class="forgot-link float-right text-primary">Forgot password?</a>
 
-                                        <!-- Google login button -->
-                                        <button type="button" class="btn btn-outline-danger btn-block mt-3">
-                                            <i class="bi bi-google"></i> Login with Google
-                                        </button>
+    <!-- Google login button -->
+    <button type="button" class="btn btn-outline-danger btn-block mt-3">
+        <i class="bi bi-google"></i> Login with Google
+    </button>
 
-                                        <!-- Facebook login button -->
-                                        <button type="button" class="btn btn-outline-primary btn-block">
-                                            <i class="bi bi-facebook"></i> Login with Facebook
-                                        </button>
-                                    </form>
+    <!-- Facebook login button -->
+    <button type="button" class="btn btn-outline-primary btn-block">
+        <i class="bi bi-facebook"></i> Login with Facebook
+    </button>
+</form>
+
+<!-- Confirmation Message -->
+<div class="confirmation-message" style="display: none;">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Welcome Back!</h4>
+        <p>You are successfully logged in.</p>
+    </div>
+</div>
+
+<!-- Error Message -->
+<div class="error-message" style="display: none;">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Oops!</h4>
+        <p class="error-text"></p>
+    </div>
+</div>
+
+
+<script>
+
+    // Function to handle login form submission via AJAX
+    function submitLoginForm(event) {
+        event.preventDefault();  // Prevent the default form submission
+
+        let form = new FormData(event.target);  // Collect form data
+        let confirmationMessage = document.querySelector(".confirmation-message");
+        let errorMessage = document.querySelector(".error-message");
+        let submitButton = document.querySelector("button[type='submit']");
+
+        // Disable the submit button to prevent multiple clicks
+        submitButton.disabled = true;
+        submitButton.innerText = "Logging in...";  // Change button text
+        console.log('test');
+        $.ajax({
+            url: 'actions/login/login.php',  // PHP file to handle login
+            type: 'POST',
+            data: form,
+            processData: false,  // Don't process the data
+            contentType: false,  // Let jQuery set the content type
+            success: function(response) {
+                let data = JSON.parse(response);  // Parse JSON response
+
+                if (data.success) {
+                    // Display confirmation message on success
+                    confirmationMessage.style.display = "block";
+                    errorMessage.style.display = "none";  // Hide error message
+                    window.location.href = data.redirect_url;  // Redirect to dashboard
+                } else {
+                    // Display error message if login failed
+                    errorMessage.querySelector(".error-text").textContent = data.message;
+                    errorMessage.style.display = "block";
+                    confirmationMessage.style.display = "none";  // Hide confirmation message
+                }
+            },
+            error: function(xhr, status, error) {
+                // Handle AJAX error
+                errorMessage.querySelector(".error-text").textContent = "An error occurred: " + error;
+                errorMessage.style.display = "block";
+                confirmationMessage.style.display = "none";
+            },
+            complete: function() {
+                // Re-enable the submit button
+                submitButton.disabled = false;
+                submitButton.innerText = "Login";  // Reset button text
+            }
+        })
+        ;
+        console.log('test');
+    }
+</script>
+
                                     <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a
                                             href="register.html" class="text-primary ml-1">Register</a></p>
                                 </div>
@@ -236,7 +306,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="assets/js/script.js"></script>

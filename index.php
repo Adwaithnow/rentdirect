@@ -39,8 +39,8 @@
                         </li>
                     </ul>
                     <div class="auth-buttons ml-lg-2 mt-2 mt-lg-0">
-                        <a href="login.html" class="btn btn-outline-light rounded-0 mr-2 ">Login Now</a>
-                        <a href="login.html" class="btn btn-danger rounded-0">Post Property</a>
+                        <a href="login.php" class="btn btn-outline-light rounded-0 mr-2 ">Login Now</a>
+                        <a href="login.php" class="btn btn-danger rounded-0">Post Property</a>
                         <a href="postproperty.html"></a>
 
                     </div>

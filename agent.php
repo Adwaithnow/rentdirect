@@ -72,7 +72,7 @@
                         </li>
                     </ul>
                     <div class="auth-buttons ml-lg-2 mt-2 mt-lg-0">
-                        <a href="login.html" class="btn btn-outline-light rounded-0 mr-2">Login Now</a>
+                        <a href="login.php" class="btn btn-outline-light rounded-0 mr-2">Login Now</a>
                         <a class="btn btn-danger rounded-0">Post Property</a>
                     </div>
                 </div>
@@ -672,7 +672,7 @@
                                         <button type="submit" class="btn btn-danger rounded-0">Register</button>
                                     </form> -->
                                     <p class="text-muted text-center mt-3 mb-0">Already have an account? <a
-                                            href="login.html" class="text-primary ml-1">Login</a></p>
+                                            href="login.php" class="text-primary ml-1">Login</a></p>
                                 </div>
                             </div>
 
