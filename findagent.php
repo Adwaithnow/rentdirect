@@ -186,7 +186,7 @@
                             <a class="nav-link" href="rent.html">Rent</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="findagent.html">Find Agent</a>
+                            <a class="nav-link" href="findagent.php">Find Agent</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact</a>
@@ -207,8 +207,59 @@
             <h2>Connect with an agent to find your dream home </h2>
         </div>
     </section>
-
     <section class="agent-details py-5">
+        <div class="container">
+            <div class="row" id="agent-list">
+                <!-- Agents will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+    <script>
+        // Fetch agents from the server
+        fetch('actions/listing/list_agent.php')
+            .then(response => response.json())
+            .then(data => {
+                const agentList = document.getElementById('agent-list');
+                data.forEach(agent => {
+                    // Create a new card for each agent dynamically
+                    const agentHTML = `
+                    <div class="col-md-6">
+                        <div class="agent-section">
+                            <div class="agent-image">
+                                <img src="${agent.image}" alt="Agent">
+                            </div>
+                            <div class="agent-details">
+                                <h5>${agent.name}</h5>
+                                <h6>Company Name :</h6>
+                                <p>${agent.job_title}</p>
+                                <p><b>Nationality: </b>${agent.nationality}</p>
+                                <p><b>Languages Known : </b>${agent.languages}</p>
+                                <button class="btn call-btn">
+                                    <!-- Call Icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                                        <path d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z" />
+                                    </svg> CALL
+                                </button>
+                                <button class="btn call-mail">
+                                    <!-- Email Icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323">
+                                        <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
+                                    </svg> EMAIL
+                                </button>
+                                <button class="btn call-whtasapp">
+                                    <i class="bi bi-whatsapp text-green me-3 px-2"></i> WHATSAPP
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    // Append the new agent card to the agent list
+                    agentList.innerHTML += agentHTML;
+                });
+            })
+            .catch(error => console.error('Error fetching agent data:', error));
+    </script>
+    <!-- <section class="agent-details py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -398,22 +449,22 @@
                             <br>
                             <!-- <h6 class="mt-3">Social Media Links</h6> -->
 
-                            <br>
-                            <!-- <a href="#"><i class="bi bi-instagram text-pink me-3 px-2"></i></a>
+    <br>
+    <!-- <a href="#"><i class="bi bi-instagram text-pink me-3 px-2"></i></a>
                              <a href="#"><i class="bi bi-facebook text-blue me-3 px-2"></i></a>
                              <a href="#"><i class="bi bi-twitter text-blue me-3 px-2"></i></a>
                              <a href="#"><i class="bi bi-whatsapp text-green me-3 px-2"></i></a> -->
-                        </div>
-                    </div>
-                </div>
+    </div>
+    </div>
+    </div>
 
 
-            </div>
-            <!-- Repeat this row for more agents -->
-        </div>
+    </div>
+    <!-- Repeat this row for more agents -->
+    </div>
 
 
-    </section>
+    </section> -->
 
 
 
@@ -440,7 +491,7 @@
                     <ul class="list-unstyled">
                         <li><a href="index.php" class="text-white">Home</a></li>
                         <li><a href="rent.html" class="text-white">Rent</a></li>
-                        <li><a href="findagent.html" class="text-white">Find Agent</a></li>
+                        <li><a href="findagent.php" class="text-white">Find Agent</a></li>
                         <li><a href="contact.html" class="text-white">Contact</a></li>
                     </ul>
                 </div>

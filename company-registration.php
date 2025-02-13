@@ -103,7 +103,7 @@
                             <a class="nav-link" href="rent.html">Rent</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="findagent.html">Find Agent</a>
+                            <a class="nav-link" href="findagent.php">Find Agent</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact</a>
