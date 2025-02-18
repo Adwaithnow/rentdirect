@@ -226,7 +226,7 @@
                     <div class="col-md-6">
                         <div class="agent-section">
                             <div class="agent-image">
-                                <img src="${agent.image}" alt="Agent">
+                                <img src="uploads/agents/${agent.image}" alt="Agent">
                             </div>
                             <div class="agent-details">
                                 <h5>${agent.name}</h5>

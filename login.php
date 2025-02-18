@@ -221,55 +221,64 @@
 
 <script>
 
-    // Function to handle login form submission via AJAX
-    function submitLoginForm(event) {
-        event.preventDefault();  // Prevent the default form submission
+  // Function to handle login form submission via AJAX
+function submitLoginForm(event) {
+    event.preventDefault();
+    const form = new FormData(event.target);
+    const confirmationMessage = document.querySelector(".confirmation-message");
+    const errorMessage = document.querySelector(".error-message");
+    const submitButton = document.querySelector("button[type='submit']");
+    
+    // Disable the submit button to prevent multiple clicks
+    submitButton.disabled = true;
+    submitButton.innerText = "Logging in...";
 
-        let form = new FormData(event.target);  // Collect form data
-        let confirmationMessage = document.querySelector(".confirmation-message");
-        let errorMessage = document.querySelector(".error-message");
-        let submitButton = document.querySelector("button[type='submit']");
-
-        // Disable the submit button to prevent multiple clicks
-        submitButton.disabled = true;
-        submitButton.innerText = "Logging in...";  // Change button text
-        console.log('test');
-        $.ajax({
-            url: 'actions/login/login.php',  // PHP file to handle login
-            type: 'POST',
-            data: form,
-            processData: false,  // Don't process the data
-            contentType: false,  // Let jQuery set the content type
-            success: function(response) {
-                let data = JSON.parse(response);  // Parse JSON response
-
+    $.ajax({
+        url: 'actions/login/login.php',
+        type: 'POST',
+        data: form,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            try {
+                // Check if response is already an object (pre-parsed JSON)
+                const data = typeof response === 'object' ? response : JSON.parse(response);
+                
                 if (data.success) {
-                    // Display confirmation message on success
                     confirmationMessage.style.display = "block";
-                    errorMessage.style.display = "none";  // Hide error message
-                    window.location.href = data.redirect_url;  // Redirect to dashboard
+                    errorMessage.style.display = "none";
+                    window.location.href = data.redirect_url;
                 } else {
-                    // Display error message if login failed
-                    errorMessage.querySelector(".error-text").textContent = data.message;
+                    const errorText = data.message || "Login failed. Please try again.";
+                    errorMessage.querySelector(".error-text").textContent = errorText;
                     errorMessage.style.display = "block";
-                    confirmationMessage.style.display = "none";  // Hide confirmation message
+                    confirmationMessage.style.display = "none";
                 }
-            },
-            error: function(xhr, status, error) {
-                // Handle AJAX error
-                errorMessage.querySelector(".error-text").textContent = "An error occurred: " + error;
+            } catch (e) {
+                console.error("JSON parsing error:", e);
+                console.log("Raw response:", response);
+                errorMessage.querySelector(".error-text").textContent = 
+                    "Server response error. Please try again later.";
                 errorMessage.style.display = "block";
                 confirmationMessage.style.display = "none";
-            },
-            complete: function() {
-                // Re-enable the submit button
-                submitButton.disabled = false;
-                submitButton.innerText = "Login";  // Reset button text
             }
-        })
-        ;
-        console.log('test');
-    }
+        },
+        error: function(xhr, status, error) {
+            const errorText = "An error occurred: " + (error || "Unknown error");
+            errorMessage.querySelector(".error-text").textContent = errorText;
+            errorMessage.style.display = "block";
+            confirmationMessage.style.display = "none";
+            console.error("AJAX error:", {xhr, status, error});
+        },
+        complete: function() {
+            submitButton.disabled = false;
+            submitButton.innerText = "Login";
+        }
+    });
+}
+
+// Add event listener to the form
+document.querySelector("#loginForm").addEventListener("submit", submitLoginForm);
 </script>
 
                                     <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a
